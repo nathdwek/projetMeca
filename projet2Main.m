@@ -17,8 +17,14 @@ periode=L/xDot0
 poincare=round(periode/tStep)
 tGlob=[];
 yGlob=[];
-options = odeset('Events',@nextRebound,'RelTol',1e-8);
+dynamicView=1
 
+
+
+
+
+
+options = odeset('Events',@nextRebound,'RelTol',1e-8);
 for i=1:20
    [t,y] = ode45(@movementEq,[t0:tStep:t0+40],[x0 y0 xDot0 yDot0],options);
 
@@ -27,10 +33,10 @@ for i=1:20
    if value(1)<1E-8
       vecteur_n=[1 0];
    end
-   if value(2)>1E-8
+   if value(2)>-1E-8
       vecteur_n=[0 -1];
    end
-   if value(3)>1E-8
+   if value(3)>-1E-8
       vecteur_n=[-1 0];
    end
    if value(4)<1E-8
@@ -64,18 +70,25 @@ for i=1:20
    yGlob=[yGlob; x0 y0 xDot0 yDot0];
 end
 
-figure('NumberTitle','on','Name','Mouvement','Renderer','OpenGL','Color','w','Position',[0 0 720 720])
-for i=1:7:max(size(tGlob))
-   subplot(1,1,1, 'replace')
-   line([yGlob(i,1)],[yGlob(i,2)],'MarkerSize',8,'Marker','.');
-   line([-L L L -L -L ],[-L -L +L +L -L]);
-   limitLeft=A*(1+sin(omega*tGlob(i))/2);
-   limitRight = -1*limitLeft;
-   line([limitLeft limitRight],[0 0]);
-   grid on;box on;
-   axis([-1.5 1.5 -1.5 1.5])
-   drawnow;
+if dynamicView
+   figure('NumberTitle','on','Name','Mouvement','Renderer','OpenGL','Color','w','Position',[0 0 720 720])
+   for i=1:7:max(size(tGlob))
+      subplot(1,1,1, 'replace')
+      line([yGlob(i,1)],[yGlob(i,2)],'MarkerSize',8,'Marker','.');
+      line([-L L L -L -L ],[-L -L +L +L -L]);
+      limitLeft=A*(1+sin(omega*tGlob(i))/2);
+      limitRight = -1*limitLeft;
+      line([limitLeft limitRight],[0 0]);
+      grid on;box on;
+      axis([-1.5 1.5 -1.5 1.5])
+      drawnow;
+   end
 end
+
+figure('NumberTitle','on','Name','Position en fct du temps','Renderer','OpenGL','Color','w','Position',[50 50 600 600])
+plot(tGlob,yGlob(:,2))
+grid on;box on;
+
 
 figure('NumberTitle','on','Name','Trajectoire','Renderer','OpenGL','Color','w','Position',[100 100 600 600])
 plot(yGlob(:,1),yGlob(:,2))
