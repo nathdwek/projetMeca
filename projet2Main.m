@@ -64,27 +64,27 @@ for i=1:20
    yGlob=[yGlob; x0 y0 xDot0 yDot0];
 end
 
-%figure('NumberTitle','on','Name','Mouvement','Renderer','OpenGL','Color','w','Position',[600 180 720 720])
-%for i=1:7:max(size(tGlob))
-   %subplot(1,1,1, 'replace')
-   %line([yGlob(i,1)],[yGlob(i,2)],'MarkerSize',8,'Marker','.');
-   %line([-L L L -L -L ],[-L -L +L +L -L]);
-   %limitLeft=A*(1+sin(omega*tGlob(i))/2);
-   %limitRight = -1*limitLeft;
-   %line([limitLeft limitRight],[0 0]);
-   %grid on;box on;
-   %axis([-1.5 1.5 -1.5 1.5])
-   %drawnow;
-%end
+figure('NumberTitle','on','Name','Mouvement','Renderer','OpenGL','Color','w','Position',[0 0 720 720])
+for i=1:7:max(size(tGlob))
+   subplot(1,1,1, 'replace')
+   line([yGlob(i,1)],[yGlob(i,2)],'MarkerSize',8,'Marker','.');
+   line([-L L L -L -L ],[-L -L +L +L -L]);
+   limitLeft=A*(1+sin(omega*tGlob(i))/2);
+   limitRight = -1*limitLeft;
+   line([limitLeft limitRight],[0 0]);
+   grid on;box on;
+   axis([-1.5 1.5 -1.5 1.5])
+   drawnow;
+end
 
 
-figure('NumberTitle','on','Name','Trajectoire','Renderer','OpenGL','Color','w','Position',[0 500 600 600])
+figure('NumberTitle','on','Name','Trajectoire','Renderer','OpenGL','Color','w','Position',[100 100 600 600])
 plot(yGlob(:,1),yGlob(:,2))
 line([-L L L -L -L ],[-L -L +L +L -L],"MarkerSize", 7);
 grid on;box on;
 axis([-1.2 1.2 -1.2 1.2])
 
-figure('NumberTitle','on','Name','Plan des phases','Renderer','OpenGL','Color','w','Position',[650 500 600 600])
+figure('NumberTitle','on','Name','Plan des phases','Renderer','OpenGL','Color','w','Position',[150 150 600 600])
 plot(yGlob(:,2),yGlob(:,4))
 xlabel("position");
 ylabel("vitesse");
@@ -92,7 +92,7 @@ legend("Attention projete sur un axe!!");
 axis("auto")
 grid on; box on;
 
-figure('NumberTitle','on','Name','Section Poincare','Renderer','OpenGL','Color','w','Position',[1320 500 600 600])
+figure('NumberTitle','on','Name','Section Poincare','Renderer','OpenGL','Color','w','Position',[200 200 600 600])
 max(size(tGlob))
 poincare
 plot([yGlob(1:poincare:end,1)],[yGlob(1:poincare:end,3)],"linestyle", "none", "Marker", "*", "MarkerSize", 5)
