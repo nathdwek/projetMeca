@@ -24,16 +24,16 @@ for i=1:20
 
    vecteur_n=[0 0];
    value=nextRebound(t(end),y(end,:));
-   if abs(value(1))<1E-8
+   if value(1)<1E-8
       vecteur_n=[1 0];
    end
-   if abs(value(2))<1E-8
+   if value(2)>1E-8
       vecteur_n=[0 -1];
    end
-   if abs(value(3))<1E-8
+   if value(3)>1E-8
       vecteur_n=[-1 0];
    end
-   if abs(value(4))<1E-7
+   if value(4)<1E-8
       vecteur_n=[0 1];
    end
    if value(5)<1E-8 && value(5)>-1E-14
@@ -76,7 +76,6 @@ for i=1:7:max(size(tGlob))
    axis([-1.5 1.5 -1.5 1.5])
    drawnow;
 end
-
 
 figure('NumberTitle','on','Name','Trajectoire','Renderer','OpenGL','Color','w','Position',[100 100 600 600])
 plot(yGlob(:,1),yGlob(:,2))
