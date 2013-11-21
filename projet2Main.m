@@ -13,11 +13,11 @@ x0=0;
 xDot0=2;
 t0=0;
 tStep=0.001;
-periode=L/xDot0
+periode=2*L/xDot0
 poincare=round(periode/tStep)
 tGlob=[];
 yGlob=[];
-dynamicView=1
+dynamicView=0
 
 
 
@@ -107,7 +107,7 @@ grid on; box on;
 figure('NumberTitle','on','Name','Section Poincare','Renderer','OpenGL','Color','w','Position',[200 200 600 600])
 max(size(tGlob))
 poincare
-plot([yGlob(1:poincare:end,1)],[yGlob(1:poincare:end,3)],"linestyle", "none", "Marker", "*", "MarkerSize", 5)
+plot([yGlob(1:poincare:end,1)],[yGlob(1:poincare:end,3)],"linestyle", "none", "Marker", "*", "MarkerSize",3)
 axis("auto")
 axis([-1.2 1.2])
 grid on; box on;
