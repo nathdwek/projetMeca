@@ -4,7 +4,7 @@ global g L omega A
 g=10;
 L=1;
 C=1;
-omega=3.3;
+omega=1;
 A=0.5;
 
 y0=0.8;
@@ -12,7 +12,7 @@ yDot0=1;
 x0=0.5;
 xDot0=1;
 t0=0;
-tStep=0.0005;
+tStep=0.0008;
 periode=2*L/xDot0;
 poincare=round(periode/tStep)-1;
 tGlob=[];
@@ -25,24 +25,24 @@ dynamicView=0;
 
 
 options = odeset('Events',@nextRebound,'RelTol',1e-8);
-for i=1:50
+for i=1:100
    [t,y] = ode45(@movementEq,[t0:tStep:t0+40],[x0 y0 xDot0 yDot0],options);
    rebonds=i
    vecteur_n=[0 0];
    value=nextRebound(t(end),y(end,:));
-   if value(1)<1E-8
+   if value(1)<1E-6
       vecteur_n=[1 0];
    end
-   if value(2)>-1E-8
+   if value(2)>-1E-6
       vecteur_n=[0 -1];
    end
-   if value(3)>-1E-8
+   if value(3)>-1E-6
       vecteur_n=[-1 0];
    end
-   if value(4)<1E-8
+   if value(4)<1E-6
       vecteur_n=[0 1];
    end
-   if value(5)<1E-8 && value(5)>-1E-14
+   if value(5)<1E-6 && value(5)>-1E-12
       vecteur_n=[0 1];
    end
    if value(5)>-1E-8 && value(5)<1E-14
@@ -53,7 +53,7 @@ for i=1:50
    yGlob=[yGlob;y];
 
 
-   if abs(value(5))<1E-8
+   if abs(value(5))<1E-6
       xDot0=C*(y(end,3)-2*(y(end,3)*vecteur_n(1)+y(end,4)*vecteur_n(2))*vecteur_n(1))+(1+C)*cos(t(end))*omega;
    else
       xDot0=C*(y(end,3)-2*(y(end,3)*vecteur_n(1)+y(end,4)*vecteur_n(2))*vecteur_n(1));
