@@ -3,7 +3,7 @@ clear all
 paramTable=0:0.1:1;
 
 global g L omega C
-g=0;
+g=9.81;
 L=1;
 omega=0;
 
@@ -19,7 +19,7 @@ C=1;
 periode=4*L/abs(xDotInit);
 precision=500;
 tStep=periode/precision;
-poincareStep=precision;
+poincareStep=precision+1;
 xList={};
 
 
@@ -61,3 +61,4 @@ for i=1:length(paramTable)
       end
    end
 end
+print -dpng bifurcation.png

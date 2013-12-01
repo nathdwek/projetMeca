@@ -20,7 +20,7 @@ C=1;
 periode=4*L/abs(xDot0)
 precision=500;
 tStep=periode/precision;
-poincareStep=precision+2;
+poincareStep=precision+1;
 yGlob=[];
 nextFirstPick=1;
 
@@ -48,3 +48,4 @@ axis("auto")
 axis([-1.2 1.2])
 grid on; box on;
 hold on;
+disp("Taille de léchantillon: ");disp(length(yGlob));
