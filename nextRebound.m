@@ -17,10 +17,11 @@ function [value,isterminal,direction] = nextRebound(t,y)
    isterminal(4) = 1;
    direction(4) = 0;
 
-   value(5)=abs(y(1))-abs(A*(1+sin(omega*t)/2));
-   if value(5)<1E-8
+   xProximity=abs(y(1))-A*(1+sin(omega*t)/2);
+   value(5)=sign(y(2));
+   if xProximity<1E-8
       value(5)=y(2);
    end
-   isterminal(5) = 1;
    direction(5) = 0;
+   isterminal(5)=1;
 end

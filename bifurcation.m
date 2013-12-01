@@ -1,89 +1,63 @@
 clear all
 
+paramTable=0:0.1:1;
+
+global g L omega C
+g=0;
+L=1;
+omega=0;
+
+%C'est ici que ça se passe
+rebondsMax=100;
+yInit=0.8;
+yDotInit=-1;
+xInit=0.5;
+xDotInit=1;
+C=1;
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+periode=4*L/abs(xDotInit);
+precision=500;
+tStep=periode/precision;
+poincareStep=precision;
+xList={};
 
 
-list={};
-omegaTable=0:0.1:4;
-
-   global g L A C
-   g=10;
-   L=1;
-   C=1;
-   A=0.5;
-
-for i=omegaTable
-
-   global omega
-   omega=i
-   y0=0.8;
-   yDot0=1;
-   x0=0.5;
-   xDot0=1;
+for j=paramTable
+   global A
+   A=j;
+   y0=yInit;
+   yDot0=yDotInit;
+   x0=xInit;
+   xDot0=xDotInit;
    t0=0;
-   tStep=0.0005;
-   periode=4*L/xDot0;
-   poincare=round(periode/tStep)-1;
-   tGlob=[];
-   yGlob=[];
-
+   xGlob=[];
+   nextFirstPick=1;
 
    options = odeset('Events',@nextRebound,'RelTol',1e-8);
-   for i=1:50
-      [t,y] = ode45(@movementEq,[t0:tStep:t0+40],[x0 y0 xDot0 yDot0],options);
-
-      vecteur_n=[0 0];
-      value=nextRebound(t(end),y(end,:));
-      if value(1)<1E-8
-         vecteur_n=[1 0];
-      end
-      if value(2)>-1E-8
-         vecteur_n=[0 -1];
-      end
-      if value(3)>-1E-8
-         vecteur_n=[-1 0];
-      end
-      if value(4)<1E-8
-         vecteur_n=[0 1];
-      end
-      if value(5)<1E-8 && value(5)>-1E-14
-         vecteur_n=[0 1];
-      end
-      if value(5)>-1E-8 && value(5)<1E-14
-         vecteur_n=[0 -1];
-      end
-
-      tGlob=[tGlob;t];
-      yGlob=[yGlob;y];
-
-
-      if abs(value(5))<1E-8
-         xDot0=C*(y(end,3)-2*(y(end,3)*vecteur_n(1)+y(end,4)*vecteur_n(2))*vecteur_n(1))+(1+C)*cos(t(end))*omega;
+   for i=1:rebondsMax
+      rebonds=i
+      A=A
+      [t,y,t0,x0,y0,xDot0,yDot0] = oneRebound(t0,tStep,x0,y0,xDot0,yDot0,options);
+      if nextFirstPick>length(y);
+         nextFirstPick=nextFirstPick-length(y)+1;
       else
-         xDot0=C*(y(end,3)-2*(y(end,3)*vecteur_n(1)+y(end,4)*vecteur_n(2))*vecteur_n(1));
+         xGlob=[xGlob;y(nextFirstPick:poincareStep:end,1)];
+         reste=rem(length(y)-nextFirstPick,poincareStep);
+         nextFirstPick=poincareStep-reste+1;
       end
-      yDot0=C*(y(end,4)-2*(y(end,3)*vecteur_n(1)+y(end,4)*vecteur_n(2))*vecteur_n(2));
-
-      x0=y(end,1)+xDot0*tStep;
-      y0=y(end,2)+yDot0*tStep;
-
-      t0=t(end)+tStep;
-      yDot0=yDot0-g*tStep;
-
-      tGlob=[tGlob;t0];
-      yGlob=[yGlob; x0 y0 xDot0 yDot0];
-      t0=t0+tStep;
    end
-   list{end+1}=yGlob(1:poincare:end, 3);
+   list{end+1}=xGlob;
 end
 
 
 figure('NumberTitle','on','Name','Diagramme Bifurcation','Renderer','OpenGL','Color','w','Position',[200 200 600 600])
-axis([omegaTable(1)-0.2 omegaTable(end)+0.2])
-for i=1:length(omegaTable)
-   for vxTable=list{i}
-      length(vxTable)
-      for vx=vxTable'
-         line([omegaTable(i)],[vx],"Marker", "*", "MarkerSize",5)
+axis([paramTable(1)-0.2 paramTable(end)+0.2 -L-0.2 L+0.2])
+for i=1:length(paramTable)
+   for xGlob=list{i}
+      disp("Taille de léchantillon: ");disp(length(xGlob));
+      for x=xGlob'
+         line([paramTable(i)],[x],"Marker", "*", "MarkerSize",3)
       end
    end
 end
