@@ -24,8 +24,8 @@ xList={};
 
 
 for j=paramTable
-   global A
-   A=j;
+   global l
+   l=j;
    y0=yInit;
    yDot0=yDotInit;
    x0=xInit;
@@ -37,7 +37,7 @@ for j=paramTable
    options = odeset('Events',@nextRebound,'RelTol',1e-8);
    for i=1:rebondsMax
       rebonds=i
-      A=A
+      l=l
       [t,y,t0,x0,y0,xDot0,yDot0] = oneRebound(t0,tStep,x0,y0,xDot0,yDot0,options);
       if nextFirstPick>length(y);
          nextFirstPick=nextFirstPick-length(y)+1;
