@@ -1,5 +1,5 @@
 function [value,isterminal,direction] = nextRebound(t,y)
-   global L omega A value
+   global L omega value l
 
    value(1) =y(1)+L;
    isterminal(1) = 1;
@@ -17,7 +17,7 @@ function [value,isterminal,direction] = nextRebound(t,y)
    isterminal(4) = 1;
    direction(4) = 0;
 
-   xProximity=abs(y(1))-A*(1+sin(omega*t)/2);
+   xProximity=abs(y(1))-l*(1+sin(omega*t));
    value(5)=sign(y(2));
    if xProximity<1E-8
       value(5)=y(2);

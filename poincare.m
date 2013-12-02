@@ -1,23 +1,24 @@
 clear all
 
-global g L omega A C
-g=0;
+global g L omega C l
+g=9.81;
 L=1;
 t0=0;
 
 
 
+
 %C'est ici que ça se passe
-rebondsMax=500;
-omega=0;
-A=0.5;
+l=0.4;
+rebondsMax=100000;
+omega=1;
 y0=0.8;
 yDot0=1;
 x0=0.3;
 xDot0=2;
 C=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%
-periode=4*L/abs(xDot0)
+periode=2*pi/omega
 precision=500;
 tStep=periode/precision;
 poincareStep=precision+1;

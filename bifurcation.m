@@ -1,6 +1,6 @@
 clear all
 
-paramTable=0:0.1:1;
+paramTable=0:0.05:1;
 
 global g L omega C
 g=9.81;
@@ -8,10 +8,10 @@ L=1;
 omega=0;
 
 %C'est ici que ça se passe
-rebondsMax=100;
+rebondsMax=50;
 yInit=0.8;
 yDotInit=-1;
-xInit=0.5;
+xInit=0;
 xDotInit=1;
 C=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,7 +57,7 @@ for i=1:length(paramTable)
    for xGlob=list{i}
       disp("Taille de léchantillon: ");disp(length(xGlob));
       for x=xGlob'
-         line([paramTable(i)],[x],"Marker", "*", "MarkerSize",3)
+         line([paramTable(i)],[x],"Marker", "*", "MarkerSize",2)
       end
    end
 end

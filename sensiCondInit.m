@@ -1,21 +1,22 @@
 clear all
 
-global g L omega A C
+global g L omega A C l
 g=9.81;
 L=1;
 C=1;
+l=0.5;
 
 
 %C'est ici que ça se passe
-rebondsMax=200;
-omega=3;
-A=0.5;
-yInit=0.7;
-yDotInit=2;
-xInit=0.5;
+rebondsMax=160;
+omega=1;
+A=0.25;
+yInit=0.8;
+yDotInit=-1;
+xInit=0;
 xDotInit=1;
-startGraph=12;
-endGraph=0;
+startGraph=20;
+endGraph=35;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 deltaXInit=0.01;
 deltaYInit=0;
@@ -68,24 +69,9 @@ if indexEnd<0
    figure('NumberTitle','on','Name','Position en fct du temps','Renderer','OpenGL','Color','w','Position',[50 50 600 600])
    plot(tGlob1(indexStart:end),yGlob1(indexStart:end,1), tGlob2(indexStart:end), yGlob2(indexStart:end,1))
    grid on;box on;
-
-   figure('NumberTitle','on','Name','Plan des phases','Renderer','OpenGL','Color','w','Position',[150 150 600 600])
-   plot(yGlob1(indexStart:end,1),yGlob1(indexStart:end,3),yGlob2(indexStart:end,1),yGlob2(indexStart:end,3))
-   xlabel("position en x");
-   ylabel("vitesse en x");
-   legend("Attention projete sur un axe!!");
-   axis("auto")
-   grid on; box on;
 else
    figure('NumberTitle','on','Name','Position en fct du temps','Renderer','OpenGL','Color','w','Position',[50 50 600 600])
    plot(tGlob1(indexStart:indexEnd),yGlob1(indexStart:indexEnd,1), tGlob2(indexStart:indexEnd), yGlob2(indexStart:indexEnd,1))
    grid on;box on;
-
-   figure('NumberTitle','on','Name','Plan des phases','Renderer','OpenGL','Color','w','Position',[150 150 600 600])
-   plot(yGlob1(indexStart:indexEnd,1),yGlob1(indexStart:indexEnd,3),yGlob2(indexStart:indexEnd,1),yGlob2(indexStart:indexEnd,3))
-   xlabel("position en x");
-   ylabel("vitesse en x");
-   legend("Attention projete sur un axe!!");
-   axis("auto")
-   grid on; box on;
+   print -dpng test.png
 end

@@ -1,7 +1,7 @@
 clear all
 
-global g L omega A C
-g=0;
+global g L omega C l
+g=9.81;
 L=1;
 t0=0;
 tGlob=[];
@@ -10,13 +10,13 @@ yGlob=[];
 
 
 %C'est ici que ça se passe
-rebondsMax=100;
-omega=0;
-A=0.4;
+l=0.4
+rebondsMax=20;
+omega=1;
 y0=0.8;
-yDot0=1;
-x0=0;
-xDot0=2;
+yDot0=0;
+x0=0.6;
+xDot0=1;
 dynamicView=1;
 C=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -37,11 +37,11 @@ end
 
 if dynamicView
    figure('NumberTitle','on','Name','Mouvement','Renderer','OpenGL','Color','w','Position',[0 0 720 720])
-   for i=1:5:max(size(tGlob))
+   for i=1:3:max(size(tGlob))
       subplot(1,1,1, 'replace')
       line([yGlob(i,1)],[yGlob(i,2)],'MarkerSize',8,'Marker','.');
       line([-L L L -L -L ],[-L -L +L +L -L]);
-      limitLeft=A*(1+sin(omega*tGlob(i))/2);
+      limitLeft=l*(1+sin(omega*tGlob(i)));
       limitRight = -1*limitLeft;
       line([limitLeft limitRight],[0 0]);
       grid on;box on;

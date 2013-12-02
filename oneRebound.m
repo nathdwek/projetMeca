@@ -1,5 +1,5 @@
 function [t y newT0 newX0 newY0 newXDot0 newYDot0] = oneRebound(t0,tStep,x0,y0,xDot0,yDot0, options)
-   global C omega
+   global C omega l
    [t,y] = ode45(@movementEq,[t0:tStep:t0+40],[x0 y0 xDot0 yDot0],options);
    vecteur_n=[0 0];
    newT0=t(end);
@@ -31,7 +31,7 @@ function [t y newT0 newX0 newY0 newXDot0 newYDot0] = oneRebound(t0,tStep,x0,y0,x
       newY0=-5E-8;
    end
    if abs(value(5))<1E-8
-      newXDot0=C*(y(end,3)-2*(y(end,3)*vecteur_n(1)+y(end,4)*vecteur_n(2))*vecteur_n(1))+(1+C)*cos(t(end))*omega;
+      newXDot0=C*(y(end,3)-2*(y(end,3)*vecteur_n(1)+y(end,4)*vecteur_n(2))*vecteur_n(1))+(1+C)*l*cos(omega*t(end))*omega;
    else
       newXDot0=C*(y(end,3)-2*(y(end,3)*vecteur_n(1)+y(end,4)*vecteur_n(2))*vecteur_n(1));
    end
