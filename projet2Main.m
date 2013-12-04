@@ -1,7 +1,7 @@
 clear all
 
 global g L omega C l
-g=9.81;
+g=0;
 L=1;
 t0=0;
 tGlob=[];
@@ -10,17 +10,18 @@ yGlob=[];
 
 
 %C'est ici que ça se passe
-l=0.4
-rebondsMax=20;
-omega=1;
-y0=0.8;
-yDot0=0;
-x0=0.6;
-xDot0=1;
+l=0.4;
+rebondsMax=100;
+omega=2;
+y0=0.5;
+yDot0=-1;
+x0=-0.4;
+xDot0=0;
 dynamicView=1;
 C=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-tStep=0.005
+tStep=0.005;
+firstPick=0;
 
 
 
@@ -30,7 +31,9 @@ tStep=0.005
 options = odeset('Events',@nextRebound,'RelTol',1e-8);
 for i=1:rebondsMax
    rebonds=i
-   [t,y,t0,x0,y0,xDot0,yDot0] = oneRebound(t0,tStep,x0,y0,xDot0,yDot0, options);
+   [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound2(t0, firstPick, tStep, x0, y0, xDot0, yDot0);
+   xDot0=xDot0
+   yDot0=yDot0
    tGlob=[tGlob;t];
    yGlob=[yGlob;y];
 end
@@ -50,6 +53,7 @@ if dynamicView
    end
 end
 
+#{
 figure('NumberTitle','on','Name','Position en fct du temps','Renderer','OpenGL','Color','w','Position',[50 50 600 600])
 plot(tGlob,yGlob(:,2))
 grid on;box on;
@@ -67,4 +71,4 @@ xlabel("position");
 ylabel("vitesse");
 legend("Attention projete sur un axe!!");
 axis("auto")
-grid on; box on;
+grid on; box on;#}
