@@ -20,7 +20,7 @@ xDot0=1;
 dynamicView=1;
 C=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-tStep=4*L/xDot0
+periode=4*L/abs(xDot0);
 firstPick=0;
 
 
@@ -30,7 +30,7 @@ firstPick=0;
 
 options = odeset('Events',@nextRebound,'RelTol',1e-8);
 for i=1:rebondsMax
-   [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound2(t0, firstPick, tStep, x0, y0, xDot0, yDot0);
+   [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound2(t0, firstPick, periode, x0, y0, xDot0, yDot0);
    tGlob=[tGlob;t];
    yGlob=[yGlob;y];
 end

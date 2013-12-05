@@ -1,26 +1,22 @@
-clear all
+clear all; close all;
 
 paramTable=0:0.05:1;
 
 global g L omega C
 g=9.81;
 L=1;
-omega=0;
 
 %C'est ici que ça se passe
-rebondsMax=50;
-yInit=0.8;
-yDotInit=-1;
-xInit=0;
-xDotInit=1;
+rebondsMax=750;
+omega=0;
+yInit=0.6;
+yDotInit=-0.2;
+xInit=0.3;
+xDotInit=0.8;
 C=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%
-
 periode=4*L/abs(xDotInit);
-precision=500;
-tStep=periode/precision;
-poincareStep=precision+1;
-xList={};
+xGlobsList={};
 
 
 for j=paramTable
@@ -32,33 +28,35 @@ for j=paramTable
    xDot0=xDotInit;
    t0=0;
    xGlob=[];
-   nextFirstPick=1;
+   firstPick=0;
 
-   options = odeset('Events',@nextRebound,'RelTol',1e-8);
    for i=1:rebondsMax
-      rebonds=i
-      l=l
-      [t,y,t0,x0,y0,xDot0,yDot0] = oneRebound(t0,tStep,x0,y0,xDot0,yDot0,options);
-      if nextFirstPick>length(y);
-         nextFirstPick=nextFirstPick-length(y)+1;
-      else
-         xGlob=[xGlob;y(nextFirstPick:poincareStep:end,1)];
-         reste=rem(length(y)-nextFirstPick,poincareStep);
-         nextFirstPick=poincareStep-reste+1;
+      [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound2(t0, firstPick, periode, x0, y0, xDot0, yDot0);
+      if length(y)>0
+         xGlob=[xGlob;y(1:end,1)];
       end
    end
-   list{end+1}=xGlob;
+   xGlobsList{end+1}=xGlob;
 end
 
 
 figure('NumberTitle','on','Name','Diagramme Bifurcation','Renderer','OpenGL','Color','w','Position',[200 200 600 600])
-axis([paramTable(1)-0.2 paramTable(end)+0.2 -L-0.2 L+0.2])
+axis([paramTable(1)-0.1 paramTable(end)+0.1 -L-0.1 L+0.1])
+title("Diagramme de bifurcation. Echantillonage=2L/xDot0")
+text(-0.05, -0.7, ["x0: ", num2str(xInit),"  y0: ", num2str(yInit), "  xDot0: ", num2str(xDotInit),"  yDot0: ", num2str(yDotInit)]);
+text(-0.05, -0.8, ["g= ", num2str(g)]);
+text(-0.05,-0.3,["Nombre de rebonds: " num2str(rebondsMax)]);
+text(-0.05,-0.4,"Taille de l echantillon: ");
+set(gca(),"xtick",paramTable(1:end), "xaxislocation", "zero", "ytick", [-1 -0.5 0 0.5 xInit 1]);
+xlabel('Valeur du parametre l/L')
+ylabel('Coordonnee en x echantillonnee')
+box off;
 for i=1:length(paramTable)
-   for xGlob=list{i}
-      disp("Taille de léchantillon: ");disp(length(xGlob));
-      for x=xGlob'
-         line([paramTable(i)],[x],"Marker", "*", "MarkerSize",2)
-      end
+   xGlob=xGlobsList{i};
+   text(paramTable(i),-0.5,num2str(length(xGlob)));
+   for x=xGlob'
+      line([paramTable(i)],[x],"Marker", ".", "MarkerSize",6)
    end
 end
+
 print -dpng bifurcation.png

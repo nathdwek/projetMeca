@@ -11,14 +11,14 @@ yGlob=[];
 
 %C'est ici que ça se passe
 l=0.4;
-rebondsMax=20;
+rebondsMax=100;
 omega=2;
 y0=0.5;
 yDot0=-1;
 x0=-0.4;
 xDot0=0;
 dynamicView=1;
-C=1;
+C=0.95;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 tStep=0.002;
 firstPick=0;
@@ -37,7 +37,7 @@ end
 
 if dynamicView
    figure('NumberTitle','on','Name','Mouvement','Renderer','OpenGL','Color','w','Position',[0 0 720 720])
-   for i=1:3:max(size(tGlob))
+   for i=1:7:max(size(tGlob))
       subplot(1,1,1, 'replace')
       line([yGlob(i,1)],[yGlob(i,2)],'MarkerSize',8,'Marker','.');
       line([-L L L -L -L ],[-L -L +L +L -L]);
