@@ -2,12 +2,13 @@ clear all; close all;
 
 paramTable=0:0.05:1;
 
-global g L omega C
+global g L l omega C
 g=9.81;
 L=1;
 
 %C'est ici que ça se passe
-rebondsMax=750;
+rebondsMax=400;
+%l=0.4;
 omega=0;
 yInit=0.6;
 yDotInit=-0.2;
@@ -20,7 +21,6 @@ xGlobsList={};
 
 
 for j=paramTable
-   global l
    l=j;
    y0=yInit;
    yDot0=yDotInit;
