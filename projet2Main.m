@@ -13,10 +13,10 @@ yGlob=[];
 l=0.3;
 rebondsMax=200;
 omega=0;
-y0=-0.1;
-yDot0=-3;
-x0=0;
-xDot0=1;
+y0=0.4;
+yDot0=-1;
+x0=0.3;
+xDot0=0.7;
 dynamicView=0;
 C=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%

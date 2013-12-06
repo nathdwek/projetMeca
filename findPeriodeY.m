@@ -13,10 +13,10 @@ C=1;
 l=0.3;
 rebondsMax=200;
 omega=0;
-y0Init=-0.1;
-yDot0Init=-3;
-x0Init=0;
-xDot0Init=1;
+y0Init=0.4;
+yDot0Init=-1;
+x0Init=0.3;
+xDot0Init=0.7;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 longuePeriode=getPeriode("y",x0Init,y0Init,xDot0Init,yDot0Init);
 courtePeriode=getCourtePeriode(y0Init,yDot0Init);
@@ -24,17 +24,17 @@ periodeEnDessous=longuePeriode-courtePeriode;
 
 i=-1;
 isRegulier=false;
-while i<=20 && not(isRegulier)
+while i<=30 && not(isRegulier)
    i=i+1;
    j=-1;
-   while j<=10 && not(isRegulier)
+   while j<=30 && not(isRegulier)
       j=j+1;
       if i==0 && j==0
          u=0;
       else
          u=-1;
       end
-      while u<=1 && not(isRegulier)
+      while u<=0 && not(isRegulier)
          u=u+1;
          tGlob=[];
          yGlob=[];

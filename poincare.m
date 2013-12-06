@@ -19,7 +19,11 @@ yDot0=-5;
 x0=0;
 xDot0=0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-periode=getPeriode("y",x0,y0,xDot0,yDot0);
+
+longuePeriode=getPeriode("y",x0,y0,xDot0,yDot0);
+courtePeriode=getCourtePeriode(y0,yDot0);
+periodeEnDessous=longuePeriode-courtePeriode;
+periode=19*longuePeriode+9*courtePeriode+5*periodeEnDessous
 firstPick=0;
 
 
