@@ -7,7 +7,7 @@ function periode=getPeriode(which,x0,y0,xDot0,yDot0)
          periode=2*(y0+L)/yDot0;
       else
          racines=roots([-g/2 yDot0 y0+L]);
-         periode=abs(racines(1)-racines(2))
+         periode=abs(racines(1)-racines(2));
       end
    else
       disp("erreur sur le choix de direction de periode");

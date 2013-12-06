@@ -19,21 +19,17 @@ x0=0;
 xDot0=1;
 C=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-periode=getPeriode("x",x0,y0,xDot0,yDot0);
+periode=getPeriode("y",x0,y0,xDot0,yDot0);
 firstPick=0;
 
 
 
-
-
-
-options = odeset('Events',@nextRebound,'RelTol',1e-8);
 for i=1:rebondsMax
    [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound2(t0, firstPick, periode, x0, y0, xDot0, yDot0);
    tGlob=[tGlob;t];
    yGlob=[yGlob;y];
 end
-yGlob=yGlob(:,[1 3]);
+yGlob=yGlob(:,[2 4]);
 
 for i=1:length(tGlob)-1
    if abs(tGlob(i+1)-tGlob(i)-periode)>1E-12
