@@ -1,4 +1,4 @@
-function [t y newT0 newX0 newY0 newXDot0 newYDot0 newFirstPick]=oneRebound2(t0, firstPick, periode, x0, y0, xDot0, yDot0)
+function [t y newT0 newX0 newY0 newXDot0 newYDot0 newFirstPick]=oneRebound(t0, firstPick, periode, x0, y0, xDot0, yDot0)
    global g l L omega C
    y=[];
    t=[];

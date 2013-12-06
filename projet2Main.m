@@ -10,15 +10,15 @@ yGlob=[];
 
 
 %C'est ici que ça se passe
-l=0.4;
-rebondsMax=100;
-omega=2;
-y0=0.5;
-yDot0=-1;
-x0=-0.4;
-xDot0=0;
-dynamicView=1;
-C=0.95;
+l=0.3;
+rebondsMax=200;
+omega=0;
+y0=-0.1;
+yDot0=-3;
+x0=0;
+xDot0=1;
+dynamicView=0;
+C=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 tStep=0.002;
 firstPick=0;
@@ -26,11 +26,8 @@ firstPick=0;
 
 
 
-
-
-options = odeset('Events',@nextRebound,'RelTol',1e-8);
 for i=1:rebondsMax
-   [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound2(t0, firstPick, tStep, x0, y0, xDot0, yDot0);
+   [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound(t0, firstPick, tStep, x0, y0, xDot0, yDot0);
    tGlob=[tGlob;t];
    yGlob=[yGlob;y];
 end

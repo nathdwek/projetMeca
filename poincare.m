@@ -4,6 +4,7 @@ global g L omega C l
 g=9.81;
 L=1;
 t0=0;
+C=1;
 tGlob=[];
 yGlob=[];
 
@@ -13,11 +14,10 @@ yGlob=[];
 l=0.1;
 rebondsMax=1000;
 omega=0;
-y0=0.6;
-yDot0=-2;
+y0=-0.1;
+yDot0=-5;
 x0=0;
-xDot0=1;
-C=1;
+xDot0=0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 periode=getPeriode("y",x0,y0,xDot0,yDot0);
 firstPick=0;
@@ -25,7 +25,7 @@ firstPick=0;
 
 
 for i=1:rebondsMax
-   [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound2(t0, firstPick, periode, x0, y0, xDot0, yDot0);
+   [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound(t0, firstPick, periode, x0, y0, xDot0, yDot0);
    tGlob=[tGlob;t];
    yGlob=[yGlob;y];
 end
