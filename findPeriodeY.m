@@ -13,10 +13,10 @@ C=1;
 l=0.3;
 rebondsMax=200;
 omega=0;
-y0Init=0.4;
-yDot0Init=-1;
+y0Init=0.5;
+yDot0Init=1;
 x0Init=0.3;
-xDot0Init=0.7;
+xDot0Init=0.5;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 longuePeriode=getPeriode("y",x0Init,y0Init,xDot0Init,yDot0Init);
 courtePeriode=getCourtePeriode(y0Init,yDot0Init);
