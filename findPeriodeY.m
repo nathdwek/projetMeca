@@ -1,7 +1,6 @@
 clear all; close all;
 
 global g L omega C l
-g=9.81;
 L=1;
 C=1;
 
@@ -10,16 +9,17 @@ C=1;
 
 
 %C'est ici que ça se passe
-l=0.3;
 rebondsMax=200;
+g=0;
+l=0.3;
 omega=0;
-y0Init=0.5;
-yDot0Init=1;
-x0Init=0.3;
-xDot0Init=0.5;
+y0=0.5;
+yDot0=1;
+x0=0.5;
+xDot0=2;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-longuePeriode=getPeriode("y",x0Init,y0Init,xDot0Init,yDot0Init);
-courtePeriode=getCourtePeriode(y0Init,yDot0Init);
+longuePeriode=getPeriode("y",x0,y0,xDot0,yDot0);
+courtePeriode=getCourtePeriode(y0,yDot0);
 periodeEnDessous=longuePeriode-courtePeriode;
 
 i=-1;
@@ -38,15 +38,15 @@ while i<=30 && not(isRegulier)
          u=u+1;
          tGlob=[];
          yGlob=[];
-         y0=y0Init;
-         yDot0=yDot0Init;
-         x0=x0Init;
-         xDot0=xDot0Init;
+         yInit=y0;
+         yDotInit=yDot0;
+         xInit=x0;
+         xDotInit=xDot0;
          periode=i*longuePeriode+j*courtePeriode+u*periodeEnDessous;
          firstPick=0;
          t0=0;
          for k=1:rebondsMax
-            [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound(t0, firstPick, periode, x0, y0, xDot0, yDot0);
+            [t y t0 xInit yInit xDotInit yDotInit firstPick]=oneRebound(t0, firstPick, periode, xInit, yInit, xDotInit, yDotInit);
             tGlob=[tGlob;t];
             yGlob=[yGlob;y];
          end

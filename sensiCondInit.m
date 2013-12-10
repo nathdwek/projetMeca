@@ -1,64 +1,62 @@
 clear all
 
 global g L omega A C l
-g=9.81;
 L=1;
 C=1;
-l=0.5;
+
 
 
 %C'est ici que ça se passe
 rebondsMax=160;
-omega=1;
-A=0.25;
-yInit=0.8;
-yDotInit=-1;
-xInit=0;
-xDotInit=1;
-startGraph=20;
-endGraph=35;
+g=9.81;
+l=0.3;
+omega=2;
+y0=0.8;
+yDot0=-1;
+x0=0;
+xDot0=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
+startGraph=0;
+endGraph=0;
 deltaXInit=0.01;
 deltaYInit=0;
 deltaXDotInit=0;
 deltaYDotInit=0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-
 t0=0;
-tStep=0.005;
+periode=0.005;
 tGlob1=[];
 yGlob1=[];
 tGlob2=[];
 yGlob2=[];
-options = odeset('Events',@nextRebound,'RelTol',1e-8);
-indexStart=floor(startGraph/tStep)+1;
-indexEnd=ceil(endGraph/tStep)-1
+indexStart=floor(startGraph/periode)+1;
+indexEnd=ceil(endGraph/periode)-1;
+firstPick=0;
 
 
 
 
-y0=yInit;
-yDot0=yDotInit;
-x0=xInit;
-xDot0=xDotInit;
+yInit=y0;
+yDotInit=yDot0;
+xInit=x0;
+xDotInit=xDot0;
 for i=1:rebondsMax
-   rebonds=i
-   [t,y,t0,x0,y0,xDot0,yDot0] = oneRebound(t0,tStep,x0,y0,xDot0,yDot0, options);
+   [t y t0 xInit yInit xDotInit yDotInit firstPick]=oneRebound(t0, firstPick, periode, xInit, yInit, xDotInit, yDotInit);
    tGlob1=[tGlob1;t];
    yGlob1=[yGlob1;y];
 end
 
 
 
-y0=yInit+deltaYInit;
-yDot0=yDotInit+deltaYDotInit;
-x0=xInit+deltaXInit;
-xDot0=xDotInit+deltaXDotInit;
+yInit=y0+deltaYInit;
+yDotInit=yDot0+deltaYDotInit;
+xInit=x0+deltaXInit;
+xDotInit=xDot0+deltaXDotInit;
 t0=0;
+firstPick=0;
 
 for i=1:rebondsMax
-   rebonds=i
-   [t,y,t0,x0,y0,xDot0,yDot0] = oneRebound(t0,tStep,x0,y0,xDot0,yDot0, options);
+   [t y t0 xInit yInit xDotInit yDotInit firstPick]=oneRebound(t0, firstPick, periode, xInit, yInit, xDotInit, yDotInit);
    tGlob2=[tGlob2;t];
    yGlob2=[yGlob2;y];
 end

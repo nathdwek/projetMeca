@@ -1,7 +1,6 @@
 clear all; close all;
 
 global g L omega C l
-g=9.81;
 L=1;
 t0=0;
 C=1;
@@ -11,8 +10,9 @@ yGlob=[];
 
 
 %C'est ici que ça se passe
-l=0.1;
 rebondsMax=1000;
+g=9.81;
+l=0.1;
 omega=0;
 y0=-0.1;
 yDot0=-5;

@@ -20,7 +20,7 @@ function [t y newT0 newX0 newY0 newXDot0 newYDot0 newFirstPick]=oneRebound(t0, f
    end
    if reason==2
       newYDot0=-C*newYDot0;
-      newXDot0=C*newXDot0+(1+C)*l*cos(omega*newT0)*omega;
+      newXDot0=C*newXDot0+(1+C)*sign(newX0)*l*cos(omega*newT0)*omega;
    end
    if reason==3
       newXDot0=-C*newXDot0;

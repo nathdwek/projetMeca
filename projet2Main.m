@@ -1,26 +1,26 @@
 clear all
 
 global g L omega C l
-g=9.81;
 L=1;
 t0=0;
 tGlob=[];
 yGlob=[];
+C=1;
 
 
 
 %C'est ici que ça se passe
+rebondsMax=160;
+g=9.81;
 l=0.3;
-rebondsMax=200;
-omega=0;
-y0=0.4;
+omega=2;
+y0=0.8;
 yDot0=-1;
-x0=0.3;
-xDot0=0.7;
-dynamicView=0;
-C=1;
+x0=0;
+xDot0=1;
+dynamicView=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-tStep=0.002;
+tStep=0.001;
 firstPick=0;
 
 

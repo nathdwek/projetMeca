@@ -3,18 +3,19 @@ clear all; close all;
 paramTable=0:0.05:1;
 
 global g L l omega C
-g=9.81;
+
 L=1;
+C=1;
 
 %C'est ici que ça se passe
 rebondsMax=400;
+g=9.81;
 %l=0.4;
 omega=0;
-yInit=0.6;
-yDotInit=-0.2;
-xInit=0.3;
-xDotInit=0.8;
-C=1;
+y0=0.6;
+yDot0=-0.2;
+x0=0.3;
+xDot0=0.8;
 %%%%%%%%%%%%%%%%%%%%%%%%%
 periode=4*L/abs(xDotInit);
 xGlobsList={};
@@ -22,16 +23,16 @@ xGlobsList={};
 
 for j=paramTable
    l=j;
-   y0=yInit;
-   yDot0=yDotInit;
-   x0=xInit;
-   xDot0=xDotInit;
+   yInit=y0;
+   yDotInit=yDot0;
+   xInit=x0;
+   xDotInit=xDot0;
    t0=0;
    xGlob=[];
    firstPick=0;
 
    for i=1:rebondsMax
-      [t y t0 x0 y0 xDot0 yDot0 firstPick]=oneRebound2(t0, firstPick, periode, x0, y0, xDot0, yDot0);
+      [t y t0 xInit yInit xDotInit yDotInit firstPick]=oneRebound(t0, firstPick, periode, xInit, yInit, xDotInit, yDotInit);
       if length(y)>0
          xGlob=[xGlob;y(1:end,1)];
       end
