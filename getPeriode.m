@@ -4,7 +4,7 @@ function periode=getPeriode(which,x0,y0,xDot0,yDot0)
       periode=4*L/xDot0;
    elseif which=="y"
       if g==0
-         periode=4*L/yDot0;
+         periode=4*L/abs(yDot0);
       else
          racines=roots([-g/2 yDot0 y0+L]);
          periode=abs(racines(1)-racines(2));
