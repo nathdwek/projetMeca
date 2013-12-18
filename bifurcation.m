@@ -1,7 +1,7 @@
 %L est la moitié de la longueur du carré, contrairement au L du rapport!
 clear all; close all;
 
-paramTable=0:0.05:1;
+paramTable=0:0.05:2;
 
 global g L l omega C
 
@@ -10,16 +10,16 @@ C=1;
 
 %C'est ici que ça se passe
 rebondsMax=400;
-g=9.81;
-%l=0.4;
-omega=0;
-y0=0.7;
-yDot0=-0.2;
-x0=0.4;
-xDot0=0.2;
+g=0;
+l=0.4;
+%omega=0;
+y0=-0.1;
+yDot0=0.5;
+x0=0.1;
+xDot0=0.5;
 %%%%%%%%%%%%%%%%%%%%%%%%%
-deltaXInit=0.01;
-deltaYInit=0;
+deltaXInit=0;
+deltaYInit=0.001;
 deltaXDotInit=0;
 deltaYDotInit=0.03;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -28,7 +28,7 @@ xGlobs2List={};
 
 
 for j=paramTable
-   l=j;
+   omega=j;
    yInit=y0;
    yDotInit=yDot0;
    xInit=x0;
@@ -36,19 +36,19 @@ for j=paramTable
    t0=0;
    xGlob=[];
    firstPick=0;
-   periode=getPeriode("y",xInit,yInit,xDotInit,yDotInit);
+   periode=getPeriode("x",xInit,yInit,xDotInit,yDotInit);
 
    for i=1:rebondsMax
       [t y t0 xInit yInit xDotInit yDotInit firstPick]=oneRebound(t0, firstPick, periode, xInit, yInit, xDotInit, yDotInit);
       if length(y)>0
-         xGlob=[xGlob;y(1:end,2)];
+         xGlob=[xGlob;y(1:end,1)];
       end
    end
    xGlobsList{end+1}=xGlob;
 end
 
 for j=paramTable
-   l=j;
+   omega=j;
    yInit=y0+deltaYInit;
    yDotInit=yDot0+deltaYDotInit;
    xInit=x0+deltaXInit;
@@ -56,12 +56,12 @@ for j=paramTable
    t0=0;
    firstPick=0;
    xGlob=[];
-   periode=getPeriode("y",xInit,yInit,xDotInit,yDotInit);
+   periode=getPeriode("x",xInit,yInit,xDotInit,yDotInit);
 
    for i=1:rebondsMax
       [t y t0 xInit yInit xDotInit yDotInit firstPick]=oneRebound(t0, firstPick, periode, xInit, yInit, xDotInit, yDotInit);
       if length(y)>0
-         xGlob=[xGlob;y(1:end,2)];
+         xGlob=[xGlob;y(1:end,1)];
       end
    end
    xGlobs2List{end+1}=xGlob;
@@ -70,7 +70,7 @@ end
 
 figure('NumberTitle','on','Name','Diagramme Bifurcation','Renderer','OpenGL','Color','w','Position',[200 200 600 600])
 axis([paramTable(1)-0.1 paramTable(end)+0.2 -L-0.1 L+0.3])
-title("Diagramme de bifurcation. Echantillonage=Periode du mouvement en y en l'absence de barre")
+title("Diagramme de bifurcation. Echantillonage=Periode du mouvement en y en l'absence de barre centrale")
 text(paramTable(end)+0.05, L+0.2, ["x0= ", num2str(x0),"  y0= ", num2str(y0)]);
 text(paramTable(end)+0.05, L+0.15, ["xDot0= ", num2str(xDot0),"  yDot0= ", num2str(yDot0)]);
 text(paramTable(end)+0.05, L+0.1, ["g= " num2str(g) "  omega= " num2str(omega)]);

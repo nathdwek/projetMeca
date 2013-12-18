@@ -1,0 +1,126 @@
+\documentclass[a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[frenchb]{babel}
+\usepackage{perpage}
+\MakePerPage{footnote}
+\usepackage{float}
+
+\title{Titre}
+\author{Jun Nuo Chi, Nathan Dwek}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\begin{abstract}
+
+\end{abstract}
+
+\chapter{Introduction}
+
+
+\chapter{Modélisation du Mouvement et Considérations Théoriques}
+modélisation
+
+
+
+Pas de Convertisseurs x/y => toujours des zones interdites, meme quand omega!=0
+lien x/y
+
+
+\chapter{Barre Centrale au Repos}
+
+\section{Billard Horizontal}
+Comme annoncé dans le chapitre précédent, voici tout d'abord un diagramme de bifurcation de la position en x de la balle:
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{bifXG0W0.png}
+      \caption[Diagramme de bifurcation en x: g=0 \omega=0]{Superposition de deux diagrammes de bifurcation de la position en x de la balle en fonction de la longueur relative de la barre centrale pour des conditions initiales infiniment proches. Cas g=0.}
+\end{figure}
+
+Comme attendu, le mouvement en x de la balle apparaît parfaitement périodique. Lorsqu'on s'intéresse au mouvement en y pour vérifier si l'hypothèse émise plus haut est valide,
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{bifYG0W0.png}
+      \caption[Diagramme de bifurcation en y: g=0 \omega=0]{Superposition de deux diagrammes de bifurcation de la position en y de la balle en fonction de la longueur relative de la barre centrale pour des conditions initiales infiniment proches. Cas g=0.}
+\end{figure}
+On constate que la position en y de la balle suit une évolution parfaitement périodique, mais on assiste à un doublement de la période.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{poincYG0W0.png}
+      \caption[Section de Poincaré en y: g=0 \omega=0]{Superposition de deux sections de Poincaré en y pour des conditions initiales infiniment proches.}
+\end{figure}
+
+Celui-ci peut s'expliquer très facilement: en effet, à chaque passage par y=0 (la position en hauteur de la barre) de la balle, celle-ci peut ou non, selon sa position en x à cet instant, toucher la barre et rebondir. De plus, en l'absence de gravité, lorsque la balle rebondit sur la barre, que ce soit par le haut ou par le bas, elle subit simplement un déphasage d'une demi période par rapport au mouvement qu'elle aurait eu en l'absence de barre. Dès lors, les deux seuls états échantionnables de la balle correspondent à une accumulation d'un nombre pair ou impair de demi-périodes de déphasage.
+
+\section{Billard Vertical}
+Rajouter la gravité n'affecte pas le mouvement en x, celui-ci reste donc parfaitement régulier comme dans le cas précédent. Cependant, à première vue, un diagramme de bifurcation de la position en y montre que le mouvement selon cette coordonnée semble transitionner très rapidement vers le chaos:
+\begin{figure}[h]
+   \includegraphics[width=\textwidth]{bifYG981W0.png}
+      \caption[Diagramme de Bifurcation en y: g=9.81 \omega=0]{Superposition de deux diagrammes de bifurcation de la position en y de la balle en fonction de la longueur relative de la barre centrale pour des conditions initiales infiniment proches. Cas g=9.81.}
+\end{figure}
+Remarquons tout d'abord que ce graphe reste cohérent puisqu'il montre que le mouvement semble parfaitement périodique pour \(^l/_L=0\). Pour \(^l/_L=1\), on a une succession continue de points, avec superposition parfaite des deux conditions initiales, ce qui signifie que le mouvement est également périodique mais avec une période différente de la période d'échantillonnage, ce qui est logique puisque la balle n'évolue alors que dans un demi billard. Pour les autres valeurs non dégénérées de \(^l/_L\), le mouvement apparaît chaotique.
+
+Ceci contredit l'hypothèse présentée au chapitre précédent, selon laquelle un mouvement périodique en x impliquait forcément un mouvement périodique en y, et que nous avons réussi à vérifier dans le cas sans gravité. Il était alors aisé de faire concorder cette intuition avec les observations, puisque le mouvement en y de la balle était uniquement constitué de périodes complètes et de demi périodes complètes. Ces deux périodes n'étant pas indépendantes, le nombre d'états échantillonnables était donc fini et se limitait à deux. Dans le cas présent, le mouvement en y de la balle est plus complexe puisqu'il est constitué de trois différents types de périodes: une période ``complète'' correspondant à un cycle accompli sans toucher la barre, et deux périodes plus courtes correspondant à un cycle accompli en touchant la barre respectivement par le dessus ou le dessous.
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{3Periodes.png}
+      \caption[Les trois types de périodes possible en Y]{Les trois types de périodes possibles en Y, selon les interactions de la balle avec la barre centrale. Notons que la période ``complète'' peut être une des trois périodes présentées en bleu sur ce graphique selon l'énergie initiale de la balle.}
+   \label{fig:typesPeriodes}
+\end{figure}
+
+Il est tout de suite possible de distinguer le cas où \(\frac{\dot{y}_0^2}{2} + gh_0 \leq 0\) \footnote{Le zéro des énergies potentielles est placé en \(y=0\)} (premier mouvement en bleu sur la figure \ref{fig:typesPeriodes}) puisque la balle ne peut alors jamais toucher la barre centrale et le mouvement redevient alors périodique, quelle que soit la valeur des autres paramètres.
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{bifYG981W0Reg.png}
+      \caption[Diagramme de Bifurcation en y: g=9.81 \omega=0 \(\; \frac{\dot{y}_0^2}{2} + gh_0 \leq 0\)]{Diagramme de Bifurcation en y en fonction de la longueur relative de la barre centrale. Cas g=9.81 avec \(\frac{\dot{y}_0^2}{2} + gh_0 \leq 0\). On remarque que le mouvement redevient logiquement périodique.}
+\end{figure}
+Lorsque \(\frac{\dot{y}_0^2}{2} + gh_0 \geq 0\), le problème peut aussi se simplifier en remarquant que la période la plus longue est la somme des deux périodes plus courtes\label{propr:sommePeriodes}. Mais il existe donc toujours deux périodes indépendantes, ce qui signifie que le nombre d'états échantillonnables en utilisant la période longue uniquement est infini, ce qui explique l'allure du graphe obtenu.
+
+Si le mouvement reste malgré tout périodique, sa période serait donc forcément une combinaison linéaire entière des trois périodes élémentaires présentées plus haut.
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{decompPeriodes.png}
+      \caption[Décomposition d'un mouvement plus complexe en une succession des trois périodes-types de base]{Décomposition d'un mouvement plus complexe en une succession des trois périodes-types de base}
+\end{figure}
+Dès lors, il suffit de trouver les coefficients de cette combili pour valider l'hypothèse émise au chapitre précédent. Ceci a été fait pour plusieurs conditions initiales différentes, triviales ou moins triviales.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{bifYG981W0CombTriv.png}
+      \caption[Cas trivial d'une recherche d'une période pour le mouvement en y: g=9.81 \omega=0]{Section de Poincaré montrant le résultat de la recherche d'une période pour le mouvement en y par combinaison linéaire des trois périodes de base. Ici, la solution est triviale puisque \(x_0=0 \; et \; \dot{x}_0=0\), ce qui signifie que la balle rebondit uniquement entre la paroi inférieure et la barre centrale.}
+\end{figure}
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{bifYG981W0Comb2.png}
+      \caption[Recherche d'une période pour le mouvement en y: g=9.81 \omega=0.]{Section de Poincaré montrant le résultat de la recherche d'une période pour le mouvement en y par combinaison linéaire des trois périodes de base. Cas non trivial.}
+\end{figure}
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{bifYG981W0Comb.png}
+      \caption[Recherche d'une période pour le mouvement en y: g=9.81 \omega=0.]{Section de Poincaré montrant le résultat de la recherche d'une période pour le mouvement en y par combinaison linéaire des trois périodes de base. Cas non trivial. \label{fig:poincNonTrivial}}
+\end{figure}
+
+Cependant, il existe des conditions initiales pour lesquelles cette recherche n'a pas abouti. L'algorithme de recherche utilisé se limite à des périodes constituées d'entre zéro et trente cycles complets, d'entre zéro et trente cycles courts ``par au dessus'' et d'entre zéro et un cycle court ``par en dessous'' \footnote{Puisque comme on l'a vu page \pageref{propr:sommePeriodes}, une période longue correspond à la somme des deux périodes plus courtes}. Dès lors, il se pourrait que le mouvement en y soit malgré tout régulier mais de période trop longue par rapport aux périodes que cette recherche est capable de tester. Le mouvement présente cependant tous les indicateurs d'un mouvement chaotique: sensibilité au conditions initiales et section de poincaré très étalée. De plus, le fait que même lorsqu'elle existe, la période soit beaucoup plus longue que la période de base du système sans la barre centrale est aussi un indice de la transition vers le chaos.
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{sensiG981W0.png}
+      \caption[Sensibilité aux conditions initiales: g=9.81 \omega=0.]{Sensibilité du mouvement en Y aux différences de conditions initiales d'ordre \(10^{-3}\). Cas g=9.81.}
+\end{figure}
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{poincYG981W0Chaos.png}
+      \caption[Section de Poincaré en y: g=9.81 \omega=0]{Superposition de trois sections de Poincaré en y pour des conditions initiales infiniment proches.\label{fig:poincGChaos}}
+\end{figure}
+Il faut cependant être prudent car même les mouvements étudiés précédemment et dont on sait maintenant qu'ils sont périodiques présentaient aussi une sensibilité aux conditions initiales. De plus avant d'interprêter le graphe \ref{fig:poincGChaos} il faut le mettre en comparaison avec ceux qu'on aurait obtenu sur des mouvements réguliers de très longue période en utilisant la période de base du système.
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{poincYG981W0NoChaos.png}
+      \caption[Section de Poincaré en y d'un mouvement périodique: g=9.81 \omega=0]{Superposition de trois sections de Poincaré en y d'un mouvement périodique pour des conditions initiales infiniment proches. Ces sections sont faites non plus avec la période connue du mouvement mais bien avec la période de base du système sans la barre centrale afin de montrer l'allure d'une section de poincaré avec la mauvaise période sur un mouvement périodique mais de période très longue. Le mouvement est le même qu'à la figure \ref{fig:poincNonTrivial}}
+\end{figure}
+
+La différence entre les deux sections de poincaré apparaît quand même assez clairement et on constate donc qu'il existe bien des conditions initiales pour lesquelles le mouvement en y devient chaotique dans le cas du billard vertical avec barre centrale fixe. Ceci peut s'expliquer par le fait qu'il n'existe pas forcément un rapport rationnel entre le temps qu'il faut à la balle pour accomplir un cycle en x et le temps qu'il faut à la balle pour accomplir un cycle en y. En effet si ce rapport existait, après le PPCM des deux temps, la balle reviendrait exactement au même état (position et vitesse) et recommencerait donc le même mouvement, ainsi que les mêmes interactions avec la barre centrale (puisque celle-ci est fixe), ce qui signifie que le mouvement est alors totalement périodique. On voit donc ici de nouveau apparaître l'influence du mouvement en x sur la périodicité du mouvement en y.
+
+\chapter{Barre Centrale Respirante}
+
+\section{Billard Horizontal}
+
+\chapter{Conclusion}
+
+\nocite{*}
+\listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}
+
+\bibliographystyle{alpha}
+\bibliography{rapport.bib}
+\addcontentsline{toc}{chapter}{Bibliographie}
+
+
+\end{document}

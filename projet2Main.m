@@ -1,4 +1,4 @@
-clear all
+clear all; close all;
 
 global g L omega C l
 L=1;
@@ -10,20 +10,23 @@ C=1;
 
 
 %C'est ici que ça se passe
-rebondsMax=160;
+rebondsMax=20;
 g=9.81;
-l=0.3;
-omega=2;
+l=0.5;
+omega=0;
 y0=0.8;
-yDot0=-1;
+yDot0=1;
 x0=0;
 xDot0=1;
 dynamicView=1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
-tStep=0.001;
+tStep=0.002;
 firstPick=0;
+longuePeriode=getPeriode("y",x0,y0,xDot0,yDot0);
+courtePeriode=getCourtePeriode(y0,yDot0);
+periodeEnDessous=longuePeriode-courtePeriode;
 
-
+xDot0=20*L/(13*longuePeriode+11*courtePeriode/2+3*periodeEnDessous/2);
 
 
 for i=1:rebondsMax
