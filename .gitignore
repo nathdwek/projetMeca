@@ -3,3 +3,7 @@ ode*
 bvp4c.m
 .directory
 *.png
+*.dvi
+*.aux
+*.lof
+*.backup
