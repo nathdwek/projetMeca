@@ -18,10 +18,40 @@
 
 \chapter{Introduction}
 
+\section{Théorie du Chaos}
+La théorie du chaos est un domaine des mathématiques qui étudie les sytèmes dynamiques déterministes mais non prédictibles à long terme. Ces systèmes sont caractérisés par leur sensibilité aux conditions initiales. En effet une petite variation des conditions initiales provoque de grandes différences sur l'état final du système. D'où la métaphore introduite par Lorentz: "le battement d'ailes d'un papillon au Brésil provoque-t-il une tornade au Texas ?" (REF ??). Cette théorie ne s'applique pas qu'en mathématique puisque le comportement chaotique se rencontre dans de nombreux domaines comme la meteorologie, la physique, la psychologie, la biologie,...
+
+\section{Présentation du Projet et Démarche Adoptée}
+Le projet de mécanique de cette année consiste en l'étude du mouvement d'une bille et des paramètres responsable d'un mouvement chaotique ou périodique. Le mouvement étudié est celui d'une bille à l'intérieur d'un billard carré  au centre duquel se  trouve une barre horizontale dont la longueur peut varier suivant Asin(omegat). De plus ce billard sera positionné soit verticalement soit horizontalement, ce qui revient donc à considérer le problème avec ou sans gravité.
+
+Pour étudier les différents cas, une modélisation du problème a été faite sur Octave.  Celle-ci sera expliquée en détail au chapitre ??, et il sera possible par la même occasion d'émettre des prédictions sur le comportement du système avant de passer aux simulations proprement dites. Ensuite les résultats obtenus dans les différentes situations considérées, ainsi que l'influence des paramètres du système et des conditions initiales de la bille sur ceux-ci seront examinés et interprêté, ce qui nous mènera à la conclusion ??
+
 
 \chapter{Modélisation du Mouvement et Considérations Théoriques}
+\label{chap:modelisat}
+\section{Equations du Mouvement}
+Le mouvement global est constitué d'une suite de déplacement continus pour lesquels les équations sont:
+\left\{
+\begin{array}{l l}
+\ddot{x}=0\\
+\ddot{y}=-g \footnote{Dans le cas du billard horizontal, ce système reste valide en posant logiquement g=0}\\
+\end{array} \right
+munies des conditions initiales \(x_0 dot{x_0} y_0 dot{y_0} \).
 
-modélisation
+Une première simulation a été faite en utilisant les fonctions d'intégration numérique fournies par octave. Celles-ci sont uniquement capables de résoudre des systèmes d'équations différentielles du premier ordre, et il faut donc ramener le système ?? à un système du premier ordre en posant:
+\left\{
+\begin{array}{l l}
+\dot{x}=dx\\
+\dot{dx}=0\\
+\dot{y}=dy\\
+\dot{dy}=-g\\
+\end{array} \right
+
+Ceci, accompagné d'une modélisation des rebonds qui fera l'objet de la section suivante, permet de simuler le mouvement en utilisant octave. Cependant, pour des raisons liées à octave et à la manière dont la fonction ode45 est implémentée pour ce langage, cette manière de faire est apparue peu idéale pour faire des échantillonnages précis. Etant donné la faible complexité des solutions finales des équations du mouvement, 
+
+
+
+
 
 Pas de Convertisseurs x/y = > toujours des zones interdites, meme quand omega!=0
 lien x/y
@@ -32,6 +62,7 @@ Situation barre centrale au repos billard horizontal ``similaire'' à barre cent
 \chapter{Barre Centrale au Repos}
 
 \section{Billard Horizontal}
+\label{sec:xRegHor}
 Comme annoncé dans le chapitre précédent, voici tout d'abord un diagramme de bifurcation de la position en x de la balle:
 \begin{figure}[h!]
    \includegraphics[width=\textwidth]{bifXG0W0.png}
@@ -112,16 +143,25 @@ La différence entre les deux sections de poincaré apparaît quand même assez 
 \chapter{Barre Centrale Respirante}
 
 \section{Billard Horizontal}
+Comme annoncé au chapitre \ref{chap:modelisat}, voici de nouveau pour commencer un diagramme de bifurcation en x du mouvement en fonction cette fois-ci de la valeur de \omega. A priori, on peut choisir n'importe quelle valeur non triviale de l/L, puisque le mouvement en x était apparu toujours parfaitement périodique dans la section \ref{sec:xRegHor}.
+\begin{figure}[h!]
+   \includegraphics[width=\textwidth]{.png}
+      \caption[]{}
+\end{figure}
+
+Cette fois-ci, le mouvement n'apparaît plus du tout périodique.
+
+
 
 \chapter{Conclusion}
 
-\nocite{*}
-\listoffigures
-\addcontentsline{toc}{chapter}{\listfigurename}
+%\nocite{*}
+%\listoffigures
+%\addcontentsline{toc}{chapter}{\listfigurename}
 
-\bibliographystyle{alpha}
-\bibliography{rapport.bib}
-\addcontentsline{toc}{chapter}{Bibliographie}
+%\bibliographystyle{alpha}
+%\bibliography{rapport.bib}
+%\addcontentsline{toc}{chapter}{Bibliographie}
 
 
 \end{document}
