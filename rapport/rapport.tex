@@ -5,6 +5,7 @@
 \usepackage{perpage}
 \MakePerPage{footnote}
 \usepackage{float}
+\usepackage{amsmath}
 
 \title{Titre}
 \author{Jun Nuo Chi, Nathan Dwek}
@@ -19,41 +20,88 @@
 \chapter{Introduction}
 
 \section{Théorie du Chaos}
-La théorie du chaos est un domaine des mathématiques qui étudie les sytèmes dynamiques déterministes mais non prédictibles à long terme. Ces systèmes sont caractérisés par leur sensibilité aux conditions initiales. En effet une petite variation des conditions initiales provoque de grandes différences sur l'état final du système. D'où la métaphore introduite par Lorentz: "le battement d'ailes d'un papillon au Brésil provoque-t-il une tornade au Texas ?" (REF ??). Cette théorie ne s'applique pas qu'en mathématique puisque le comportement chaotique se rencontre dans de nombreux domaines comme la meteorologie, la physique, la psychologie, la biologie,...
+La théorie du chaos est un domaine des mathématiques qui étudie les sytèmes dynamiques déterministes mais non prédictibles à long terme. Ces systèmes sont caractérisés par leur sensibilité aux conditions initiales. En effet une petite variation des conditions initiales provoque de grandes différences sur l'état final du système. D'où la métaphore introduite par Lorentz: "le battement d'ailes d'un papillon au Brésil provoque-t-il une tornade au Texas ?" (REF ??). Cette théorie ne s'applique pas qu'en mathématique puisque le comportement chaotique se rencontre dans de nombreux domaines comme la météorologie, la physique, la finance, et, comme nous allons le voir, la mécanique.
 
 \section{Présentation du Projet et Démarche Adoptée}
-Le projet de mécanique de cette année consiste en l'étude du mouvement d'une bille et des paramètres responsable d'un mouvement chaotique ou périodique. Le mouvement étudié est celui d'une bille à l'intérieur d'un billard carré  au centre duquel se  trouve une barre horizontale dont la longueur peut varier suivant Asin(omegat). De plus ce billard sera positionné soit verticalement soit horizontalement, ce qui revient donc à considérer le problème avec ou sans gravité.
+Le projet de mécanique de cette année consiste en l'étude du mouvement d'une balle et des paramètres pouvant altérer le charcatère périodique ou non de celui-ci. Le mouvement étudié est celui d'une balle à l'intérieur d'un billard carré au centre duquel se  trouve une barre horizontale dont la longueur peut varier suivant la loi \(l=l_0(1+sin(\omega t)) \). De plus ce billard sera positionné soit verticalement soit horizontalement, ce qui revient donc à considérer le problème avec ou sans gravité.
 
-Pour étudier les différents cas, une modélisation du problème a été faite sur Octave.  Celle-ci sera expliquée en détail au chapitre ??, et il sera possible par la même occasion d'émettre des prédictions sur le comportement du système avant de passer aux simulations proprement dites. Ensuite les résultats obtenus dans les différentes situations considérées, ainsi que l'influence des paramètres du système et des conditions initiales de la bille sur ceux-ci seront examinés et interprêté, ce qui nous mènera à la conclusion ??
+Pour étudier les différents cas, une modélisation du problème a été faite sur Octave.  Celle-ci sera expliquée en détail au chapitre \ref{chap:modelisat}, et il sera possible par la même occasion d'émettre des prédictions sur le comportement du système avant de passer aux simulations proprement dites. Ensuite les résultats obtenus dans les différentes situations considérées, ainsi que l'influence des paramètres du système et des conditions initiales de la balle sur ceux-ci seront examinés et interprêté, ce qui nous mènera à la conclusion XXXXX.
 
 
 \chapter{Modélisation du Mouvement et Considérations Théoriques}
 \label{chap:modelisat}
-\section{Equations du Mouvement}
+\section{Modélisation du Mouvement}
+\subsection{Equations du Mouvement}
 Le mouvement global est constitué d'une suite de déplacement continus pour lesquels les équations sont:
-\left\{
-\begin{array}{l l}
-\ddot{x}=0\\
-\ddot{y}=-g \footnote{Dans le cas du billard horizontal, ce système reste valide en posant logiquement g=0}\\
-\end{array} \right
-munies des conditions initiales \(x_0 dot{x_0} y_0 dot{y_0} \).
+\begin{equation}
+\label{eq:mouve}
+\begin{cases}
+   \ddot{x}=0\\
+   \ddot{y}=-g\\
+\end{cases}
+\end{equation}
+munies des conditions initiales \(x_0, \; \dot{x_0}, \; y_0, \; \dot{y_0} \).\footnote{Dans le cas du billard horizontal, ce système reste valide en posant logiquement g=0}
 
-Une première simulation a été faite en utilisant les fonctions d'intégration numérique fournies par octave. Celles-ci sont uniquement capables de résoudre des systèmes d'équations différentielles du premier ordre, et il faut donc ramener le système ?? à un système du premier ordre en posant:
-\left\{
-\begin{array}{l l}
-\dot{x}=dx\\
-\dot{dx}=0\\
-\dot{y}=dy\\
-\dot{dy}=-g\\
-\end{array} \right
+Une première simulation a été faite en utilisant les fonctions d'intégration numérique fournies par octave. Celles-ci sont uniquement capables de résoudre des systèmes d'équations différentielles du premier ordre, et il faut donc ramener le système \ref{eq:mouve} à un système du premier ordre. On obtient alors:
+\begin{equation}
+\begin{cases}
+   \dot{x}=m\\
+   \dot{m}=0\\
+   \dot{y}=n\\
+   \dot{n}=-g\\
+\end{cases}
+\end{equation}
 
-Ceci, accompagné d'une modélisation des rebonds qui fera l'objet de la section suivante, permet de simuler le mouvement en utilisant octave. Cependant, pour des raisons liées à octave et à la manière dont la fonction ode45 est implémentée pour ce langage, cette manière de faire est apparue peu idéale pour faire des échantillonnages précis. Etant donné la faible complexité des solutions finales des équations du mouvement, 
+Ceci, accompagné d'une modélisation adéquate des rebonds qui fera l'objet de la section suivante, permet de simuler le mouvement en utilisant octave. Cependant, pour des raisons liées à octave et à la manière dont la fonction ode45 est implémentée pour ce langage, cette manière de faire est apparue peu idéale pour faire des échantillonnages précis. Etant donné la faible complexité des équations résolues du mouvement (équations du second degré maximum), une autre modélisation\footnote{Fournissant heureusement les mêmes résultats} a été produite à partir de celles-ci afin de pouvoir mieux contrôler l'échantillonnage du mouvement.
 
+Dans les deux cas, la modélisation du mouvement entier se fait par la répétition de trois étapes qui permettent de modéliser un unique rebond:
+\begin{enumerate}
+ \item Trouver \(t^*\) le temps du prochain rebond, et de quel ``type`` de rebond il s'agit (barre centrale, paroi horizontale, paroi verticale)\label{itm:step1};
+ \item Calculer, pour les instants désirés entre \(t_0\) et \(t^*\), l'état de la balle (\(x, \; \dot{x}, \; y, \; \dot{y} \));\footnote{Dans le cas d'une intégration numérique avec ode45, l'étape \ref{itm:step1} n'est pas faite explicitement. A la place, après chaque calcul de l'état de la balle pour un instant désiré, la fonction ode45 vérifie si elle ne s'est pas rapprochée suffisament d'une condition de rebond, et raffine l'approximation de \(t^*\) si besoin est.}
+ \item Calculer les nouvelles conditions initiales pour le rebond suivant, c'est à dire l'état de la balle en \(t'_0=t^*+\epsilon\).
+\end{enumerate}
+\subsection{Conditions de Rebond}
+Les conditions de rebond de la balle sur les parois extérieure du billard sont:
+\begin{equation*}
+ x=\pm \frac{L}{2} \text{ ou } y=\pm \frac{L}{2}
+\end{equation*}
 
+La condition de rebond de la balle sur la barre centrale est:
+\begin{equation}
+\label{eqn:rebCentr}
+\begin{cases}
+\lvert x \rvert \leq l_0(1+sin(\omega t))\\
+y=0
+\end{cases}
+\end{equation}
+Cette condition est également valable dans le cas où la barre centrale est au repos. Dans ce cas, \(\omega=0\).
+\subsection{Calcul des Nouvelles Conditions Initiales après Rebond}
+\label{sec:reb}
+Pour les parois extérieure du billard et pour la barre centrale lorsqu'elle est au repos, il est très aisé de calculer les nouvelles vitesses initiales (la position est inchangée lors du rebond). En effet ces parois sont rectilignes, immobiles et soit verticales, soit horizontales. Dès lors, lorsque la balle touche une paroi horizontale (resp. verticale), sa vitesse en x (resp. y) est inchangée et la nouvelle vitesse en y (resp. x) est l'opposée de l'ancienne vitesse en y (resp. x).
 
+Si on introduit un coefficient de restitution \(C \leq 1 \), la norme de la nouvelle vitesse initiale est multipliée par \(C\). Si ce coefficient est isotrope, ce qui signifie que la balle dissipe autant d'énergie selon la direction tangentielle à la paroi que sur la direction normale, alors les nouvelles vitesses initiales selon x et y sont toutes les deux multipliées par \(C\), et on a, pour un rebond sur une paroi horizontale par exemple:
+\begin{equation}
+\label{eqn:rebNoResp}
+\begin{cases}
+\dot{x}^+=C \dot{x}^-\\
+\dot{y}^+=-C \dot{y}^-
+\end{cases}
+\end{equation}
 
+Lorsque la barre centrale respire, il faut calculer les nouvelles vitesses initiales en tenant compte de la conservation de la quantité de mouvement. Si l'on fait l'approximation que la masse de la balle est négligeable devant la masse de la barre centrale, on obtient:
+\begin{equation}
+\label{eqn:rebResp}
+\begin{cases}
+\dot{x}^+=C\dot{x}^- +  (\text{sgn}(x^*))(1+C)cos(\omega t^*)\omega\\
+\dot{y}^+=-C \dot{y}^-
+\end{cases}
+\end{equation}
+Il faut être prudent car lorsque la barre respire, sa vitesse de déplacement réelle change de signe selon qu'on se trouve dans la moitié gauche ou droite du billard, ce qui explique pourquoi le signe de x apparaît dans le calcul de la nouvelle vitesse en x dans l'équation \ref{eqn:rebResp}.
 
-Pas de Convertisseurs x/y = > toujours des zones interdites, meme quand omega!=0
+\section{Considérations Théoriques}
+Comme on l'a remarqué dans la section \ref{sec:reb}, tous les parois sur lesquelles la balle peut rebondir sont rectilignes et soit horizontales, soit verticales. Ceci se traduit dans les systèmes \ref{eqn:rebNoResp} et \ref{eqn:rebResp} par une indépendance totale des équations en x et en y. Comme de plus les équations du mouvement \ref{eq:mouve} en x et en y sont elles aussi indépendantes, on pourrait conclure à l'indépendance totale des mouvements globaux en x et en y. Cependant, ce n'est pas tout à fait le cas à cause de la condition de rebond \ref{eqn:rebCentr}. On constate
+
+Pas de Convertisseurs x/y donc toujours des zones interdites, meme quand omega!=0
 lien x/y
 
 
@@ -143,11 +191,11 @@ La différence entre les deux sections de poincaré apparaît quand même assez 
 \chapter{Barre Centrale Respirante}
 
 \section{Billard Horizontal}
-Comme annoncé au chapitre \ref{chap:modelisat}, voici de nouveau pour commencer un diagramme de bifurcation en x du mouvement en fonction cette fois-ci de la valeur de \omega. A priori, on peut choisir n'importe quelle valeur non triviale de l/L, puisque le mouvement en x était apparu toujours parfaitement périodique dans la section \ref{sec:xRegHor}.
-\begin{figure}[h!]
-   \includegraphics[width=\textwidth]{.png}
-      \caption[]{}
-\end{figure}
+Comme annoncé au chapitre \ref{chap:modelisat}, voici de nouveau pour commencer un diagramme de bifurcation en x du mouvement en fonction cette fois-ci de la valeur de \(\omega\). A priori, on peut choisir n'importe quelle valeur non triviale de l/L, puisque le mouvement en x était apparu toujours parfaitement périodique dans la section \ref{sec:xRegHor}.
+%\begin{figure}[h!]
+%   \includegraphics[width=\textwidth]{.png}
+%      \caption[]{}
+%\end{figure}
 
 Cette fois-ci, le mouvement n'apparaît plus du tout périodique.
 

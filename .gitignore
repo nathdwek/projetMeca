@@ -7,3 +7,8 @@ bvp4c.m
 *.aux
 *.lof
 *.backup
+*.bib
+*.log
+Rapport Fostella.pdf
+Conseils.pdf
+*.toc
