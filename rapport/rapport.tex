@@ -8,7 +8,7 @@
 \usepackage{amsmath}
 \usepackage{subcaption}
 
-\title{Titre}
+\title{Rapport - Projet Chaos\\Billard Carré avec Barre Centrale}
 \author{Jun Nuo Chi, Nathan Dwek}
 
 \begin{document}
@@ -24,10 +24,10 @@ Si cette barre est fixe, le mouvement reste périodique en x, et on peut montrer
 \chapter{Introduction}
 
 \section{Théorie du Chaos}
-La théorie du chaos est un domaine des mathématiques qui étudie les sytèmes dynamiques déterministes mais non prédictibles à long terme. Ces systèmes sont caractérisés par leur sensibilité aux conditions initiales. En effet une petite variation des conditions initiales provoque de grandes différences sur l'état final du système. D'où la métaphore introduite par Lorentz: "le battement d'ailes d'un papillon au Brésil provoque-t-il une tornade au Texas ?" (REF ??). Cette théorie ne s'applique pas qu'en mathématique puisque le comportement chaotique se rencontre dans de nombreux domaines comme la météorologie, la physique, la finance, et, comme nous allons le voir, la mécanique.
+La théorie du chaos est un domaine des mathématiques qui étudie les sytèmes dynamiques déterministes mais non prédictibles à long terme. Ces systèmes sont caractérisés par leur sensibilité aux conditions initiales. En effet une petite variation des conditions initiales provoque de grandes différences sur l'état final du système. Cette théorie ne s'applique pas qu'en mathématique puisque le comportement chaotique se rencontre dans de nombreux domaines comme la météorologie, la physique, la finance, et, comme nous allons le voir, la mécanique.
 
 \section{Présentation du Projet et Démarche Adoptée}
-Le projet de mécanique de cette année consiste en l'étude du mouvement d'une balle et des paramètres pouvant altérer le charcatère périodique ou non de celui-ci. Le mouvement étudié est celui d'une balle à l'intérieur d'un billard carré au centre duquel se  trouve une barre horizontale dont la longueur peut varier suivant la loi \(l=l_0(1+sin(\omega t)) \). De plus ce billard sera positionné soit verticalement soit horizontalement, ce qui revient donc à considérer le problème avec ou sans gravité.
+Le projet de mécanique de cette année consiste en l'étude du mouvement d'une balle et des paramètres pouvant altérer le caractère périodique ou non de celui-ci. Le mouvement étudié est celui d'une balle à l'intérieur d'un billard carré au centre duquel se  trouve une barre horizontale dont la longueur peut varier suivant la loi \(l=l_0(1+sin(\omega t)) \). De plus ce billard sera positionné soit verticalement soit horizontalement, ce qui revient donc à considérer le problème avec ou sans gravité.
 
 Pour étudier les différents cas, une modélisation du problème a été faite sur Octave.  Celle-ci sera expliquée en détail au chapitre \ref{chap:modelisat}, et il sera possible par la même occasion d'émettre des prédictions sur le comportement du système avant de passer aux simulations proprement dites. Ensuite les résultats obtenus dans les différentes situations considérées, ainsi que l'influence des paramètres du système et des conditions initiales de la balle sur ceux-ci seront examinés et interprêtés.
 
@@ -36,7 +36,7 @@ Pour étudier les différents cas, une modélisation du problème a été faite 
 \label{chap:modelisat}
 \section{Modélisation du Mouvement}
 \subsection{Equations du Mouvement}
-Le mouvement global est constitué d'une suite de déplacement continus pour lesquels les équations sont:
+Le mouvement global est constitué d'une suite de déplacements continus pour lesquels les équations sont:
 \begin{equation}
 \label{eq:mouve}
 \begin{cases}
@@ -56,7 +56,7 @@ Une première simulation a été faite en utilisant les fonctions d'intégration
 \end{cases}
 \end{equation}
 
-Ceci, accompagné d'une modélisation adéquate des rebonds qui fera l'objet de la section suivante, permet de simuler le mouvement en utilisant octave. Cependant, pour des raisons liées à octave et à la manière dont la fonction ode45 est implémentée pour ce langage, cette manière de faire est apparue peu idéale pour faire des échantillonnages précis. Etant donné la faible complexité des équations résolues du mouvement (équations du second degré maximum), une autre modélisation\footnote{Fournissant heureusement les mêmes résultats} a été produite à partir de celles-ci afin de pouvoir mieux contrôler l'échantillonnage du mouvement.
+Ceci, accompagné d'une modélisation adéquate des rebonds qui fera l'objet de la section suivante, permet de simuler le mouvement en utilisant octave. Cependant, pour des raisons liées à octave et à la manière dont la fonction ode45 est implémentée pour ce langage, cette manière de faire est apparue peu idéale pour faire des échantillonnages précis. Etant donnée la faible complexité des équations résolues du mouvement (équations du second degré maximum), une autre modélisation\footnote{Fournissant heureusement les mêmes résultats} a été produite à partir de celles-ci afin de pouvoir mieux contrôler l'échantillonnage du mouvement.
 
 Dans les deux cas, la modélisation du mouvement entier se fait par la répétition de trois étapes qui permettent de modéliser un unique rebond:
 \begin{enumerate}
@@ -65,7 +65,7 @@ Dans les deux cas, la modélisation du mouvement entier se fait par la répétit
  \item Calculer les nouvelles conditions initiales pour le rebond suivant, c'est à dire l'état de la balle en \(t'_0=t^*+\epsilon\).
 \end{enumerate}
 \subsection{Conditions de Rebond}
-Les conditions de rebond de la balle sur les parois extérieure du billard sont:
+Les conditions de rebond de la balle sur les parois extérieures du billard sont:
 \begin{equation*}
  x=\pm \frac{L}{2} \text{ ou } y=\pm \frac{L}{2}
 \end{equation*}
@@ -105,7 +105,7 @@ Il faut être prudent car lorsque la barre respire, sa vitesse de déplacement r
 \section{Considérations Théoriques}
 \subsection{Indépendance x/y et Zones Interdites}
 \label{sec:zoneInter}
-Comme on l'a remarqué dans la section \ref{sec:reb}, tous les parois sur lesquelles la balle peut rebondir sont rectilignes et soit horizontales, soit verticales. Ceci se traduit dans les systèmes (\ref{eqn:rebNoResp}) et (\ref{eqn:rebResp}) par une indépendance totale des équations en x et en y. Comme de plus les équations du mouvement (\ref{eq:mouve}) en x et en y sont elles aussi indépendantes, on pourrait conclure à l'indépendance totale des mouvements globaux en x et en y. Cependant, ce n'est pas tout à fait le cas à cause de la condition de rebond sur la barre centrale (équation (\ref{eqn:rebCentr})). Cette unique influence du mouvement en x sur le mouvement en y sera examinée plus en détail dans la section suivante (\ref{sec:chaosXY}).
+Comme on l'a remarqué dans la section \ref{sec:reb}, toutes les parois sur lesquelles la balle peut rebondir sont rectilignes et soit horizontales, soit verticales. Ceci se traduit dans les systèmes (\ref{eqn:rebNoResp}) et (\ref{eqn:rebResp}) par une indépendance totale des équations en x et en y. Comme de plus les équations du mouvement (\ref{eq:mouve}) en x et en y sont elles aussi indépendantes, on pourrait conclure à l'indépendance totale des mouvements globaux en x et en y. Cependant, ce n'est pas tout à fait le cas à cause de la condition de rebond sur la barre centrale (équation (\ref{eqn:rebCentr})). Cette unique influence du mouvement en x sur le mouvement en y sera examinée plus en détail dans la section suivante.
 
 Attardons-nous pour l'instant sur le fait que, malgré le lien x/y qui vient d'être mentionné, la balle ne peut pas transférer lors d'un rebond de la quantité de mouvement en x en quantité de mouvement en y ou inversément. De plus, le système ne peut pas communiquer de quantité de mouvement en y à la balle non plus. Il résulte de tout cela que l'on a toujours conservation de la quantité
 \begin{equation}
@@ -146,10 +146,10 @@ Ceci permet aussi de directement éliminer le diagramme des phases en y comme in
                 \includegraphics[width=\textwidth]{planPhasesY1.png}
                 \caption{Avec gravité: \(1<y_{max}\)}
         \end{subfigure}
-        \caption[Les quatres allures différentes du plan des phases en Y]{Les quatres allures différentes du plan des phases en Y, selon la présence ou non de la gravité, et selon la valeur de \(y_{max}=y_0 + \frac{v^2_{y0}}{2g}\). Les discontinuités sont marquées sur les graphes (ligne verticales), et correspondent à un changement brusque de la vitesse en Y sans changement de la position en Y, càd un rebond sur une paroi horizontale ou sur la barre centrale.}
+        \caption[Les quatres allures différentes du plan des phases en Y]{Les quatres allures différentes du plan des phases en Y, selon la présence ou non de la gravité, et selon la valeur de \(y_{max}=y_0 + \frac{v^2_{y0}}{2g}\). Les discontinuités sont marquées sur les graphes (lignes verticales), et correspondent à un changement brusque de la vitesse en Y sans changement de la position en Y, c'est-à-dire un rebond sur une paroi horizontale ou sur la barre centrale.}
 \end{figure}
 
-On remarque aussi que pour une même valeur de g, lorsque \(y_{max}\) augmente, le diagramme des phases se rapproche de plus en plus du diagramme des phases qu'on obtient pour g=0. Ceci sera utile pour trouver des conditions initiales qui donnent un mouvement dont les caractéristiques tendent vers celles d'un mouvement sans gravité.
+On remarque aussi que pour une même valeur de g, lorsque \(y_{max}\) augmente, le diagramme des phases se rapproche de plus en plus du diagramme des phases qu'on obtient pour g=0, ce qui est très facile à comprendre puisque si \(y_{max}>>\frac{L}{2}\), alors le mouvement dans le billard se fait avec une grande vitesse en y, et l'accélération de la pesanteur devient négligeable. Ceci sera utile pour trouver des conditions initiales qui donnent un mouvement dont les caractéristiques tendent vers celles d'un mouvement sans gravité.
 \begin{figure}[h!]
    \includegraphics[width=\textwidth]{diagPhasesDegen.png}
       \caption[Diagramme des phases en Y avec g=9,81 dégénérant vers g=0]{Diagramme des phases en Y avec g=9.81 et \(y_{max}\gg 1 \) et dégénérant donc vers un diagramme des phases pour g=0.}
@@ -157,13 +157,13 @@ On remarque aussi que pour une même valeur de g, lorsque \(y_{max}\) augmente, 
 
 \subsection{Influence du Chaos en x sur le Chaos en y}
 \label{sec:chaosXY}
-Revenons maintenant à cette unique influence du mouvement en x sur le mouvement en y mentionnée plus haut. Si l'on part du principe\footnote{Vérifié au chapitre \ref{chap:barRepos}: les diagrammes de bifurcation apparaissent toujours parfaitement périodiques pour \(^{l}/_L=0\)} que le mouvement de la balle dans le billard sans barre centrale est périodique quelle que soit la valeur de g (et de \(\omega\) puisqu'il n'y a pas de barre centrale), on peut identifier deux éléments qui peuvent introduire du chaos lorsqu'on introduit une barre centrale respirante dans le système:
+Revenons maintenant à cette unique influence du mouvement en x sur le mouvement en y mentionnée plus haut. Si l'on part du principe que le mouvement de la balle dans le billard sans barre centrale est périodique quelle que soit la valeur de g (et de \(\omega\) puisqu'il n'y a pas de barre centrale)\footnote{Vérifié au chapitre \ref{chap:barRepos}: les diagrammes de bifurcation apparaissent toujours parfaitement périodiques pour \(^{l}/_L=0\)}, on peut identifier deux éléments qui peuvent amener du chaos lorsqu'on introduit une barre centrale respirante dans le système:
 \begin{enumerate}
  \item A chaque passage par y=0, la balle peut ou non, selon sa position en x à cet instant (et l'extension de la barre à cet instant si la barre respire) rebondir sur la barre centrale.\label{itm:condSufY}
  \item Lorsque la balle rebondit sur la barre centrale, sa vitesse en x peut être modifiée de manière imprévisible si la barre respire.\label{itm:condX}
 \end{enumerate}
 
-De (\ref{itm:condSufY}), on déduit immédiatement que le chaos en x est une conditions suffisante pour le chaos en y. D'autre part, on déduit de (\ref{itm:condX}) que le mouvement en x sera toujours régulier tant que la barre centrale ne respire pas. On pourrait même postuler que le chaos en x est aussi une condition nécessaire pour le chaos en y. Cette prédiction sera longuement examinée en détail dans le chapitre \ref{chap:barRepos}.
+De (\ref{itm:condSufY}), on déduit immédiatement que le chaos en x est une condition suffisante pour le chaos en y. D'autre part, on déduit de (\ref{itm:condX}) que le mouvement en x sera toujours régulier tant que la barre centrale ne respire pas. On pourrait même postuler que le chaos en x est aussi une condition nécessaire pour le chaos en y. Cette prédiction sera longuement examinée en détail dans le chapitre \ref{chap:barRepos}.
 
 Quelle que soit la validité de cette prédiction, le plus judicieux pour étudier le mouvement global reste donc de commencer par étudier le mouvement en x puisqu'on pourra presque directement conclure au chaos en y en cas de chaos en x.
 
@@ -186,35 +186,36 @@ Comme attendu, le mouvement en x de la balle apparaît parfaitement périodique.
 On constate que la position en y de la balle suit une évolution parfaitement périodique, mais on assiste à un doublement de la période.
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{poincYG0W0.png}
-      \caption[Section de Poincaré en y: g=0 \omega=0]{Superposition de deux sections de Poincaré en y pour des conditions initiales infiniment proches.}
+      \caption[Section de Poincaré en y: g=0 \omega=0]{Superposition de deux sections de Poincaré en y pour des conditions initiales infiniment proches. Cas g=0 \(omega=0\).}
 \end{figure}
 
 Celui-ci peut s'expliquer très facilement: en effet, à chaque passage par y=0 (la position en hauteur de la barre) de la balle, celle-ci peut ou non, selon sa position en x à cet instant, toucher la barre et rebondir. De plus, en l'absence de gravité, lorsque la balle rebondit sur la barre, que ce soit par le haut ou par le bas, elle subit simplement un déphasage d'une demi période par rapport au mouvement qu'elle aurait eu en l'absence de barre. Dès lors, les deux seuls états échantionnables de la balle correspondent à une accumulation d'un nombre pair ou impair de demi-périodes de déphasage.
 
 \section{Billard Vertical}
-Rajouter la gravité n'affecte pas le mouvement en x, celui-ci reste donc parfaitement régulier comme dans le cas précédent. Cependant, à première vue, un diagramme de bifurcation de la position en y montre que le mouvement selon cette coordonnée semble transitionner très rapidement vers le chaos:
-\begin{figure}[h]
+\label{sec:billVert}
+Rajouter la gravité n'affecte pas le mouvement en x, celui-ci reste donc parfaitement régulier comme dans le cas précédent. Cependant, à première vue, un diagramme de bifurcation de la position en y montre que le mouvement selon cette coordonnée semble transitionner très rapidement vers le chaos.
+\begin{figure}[h!]
    \includegraphics[width=\textwidth]{bifYG981W0.png}
       \caption[Diagramme de Bifurcation en y: g=9.81 \(\omega=0\)]{Superposition de deux diagrammes de bifurcation de la position en y de la balle en fonction de la longueur relative de la barre centrale pour des conditions initiales infiniment proches. Cas g=9.81.}
 \end{figure}
 Remarquons tout d'abord que ce graphe reste cohérent puisqu'il montre que le mouvement semble parfaitement périodique pour \(^l/_L=0\). Pour \(^l/_L=1\), on a une succession continue de points, avec superposition parfaite des deux conditions initiales, ce qui signifie que le mouvement est également périodique mais avec une période différente de la période d'échantillonnage, ce qui est logique puisque la balle n'évolue alors que dans un demi billard. Pour les autres valeurs non dégénérées de \(^l/_L\), le mouvement apparaît chaotique.
 
-Ceci contredit l'hypothèse présentée au chapitre précédent, selon laquelle un mouvement périodique en x impliquait forcément un mouvement périodique en y, et que nous avons réussi à vérifier dans le cas sans gravité. Il était alors aisé de faire concorder cette intuition avec les observations, puisque le mouvement en y de la balle était uniquement constitué de périodes complètes et de demi périodes complètes. Ces deux périodes n'étant pas indépendantes, le nombre d'états échantillonnables était donc fini et se limitait à deux. Dans le cas présent, le mouvement en y de la balle est plus complexe puisqu'il est constitué de trois différents types de périodes: une période ``complète'' correspondant à un cycle accompli sans toucher la barre, et deux périodes plus courtes correspondant à un cycle accompli en touchant la barre respectivement par le dessus ou le dessous.
+Ceci contredit la prédiction présentée au chapitre précédent, selon laquelle un mouvement périodique en x impliquait forcément un mouvement périodique en y, et que nous avons réussi à vérifier dans le cas sans gravité. Il était alors aisé de faire concorder cette intuition avec les observations, puisque le mouvement en y de la balle était uniquement constitué de périodes complètes et de demi périodes complètes. Ces deux périodes n'étant pas indépendantes, le nombre d'états échantillonnables était donc fini et se limitait à deux. Dans le cas présent, le mouvement en y de la balle est plus complexe puisqu'il est constitué de trois différents types de périodes: une période ``complète'' correspondant à un cycle accompli sans toucher la barre, et deux périodes plus courtes correspondant à un cycle accompli en touchant la barre respectivement par le dessus ou le dessous.
 \begin{figure}[h!]
    \includegraphics[width=\textwidth]{3Periodes.png}
-      \caption[Les trois types de périodes possible en Y]{Les trois types de périodes possibles en Y, selon les interactions de la balle avec la barre centrale. Notons que la période ``complète'' peut être une des trois périodes présentées en bleu sur ce graphique selon l'énergie initiale de la balle.}
+      \caption[Les trois types de périodes possible en Y]{Les trois types de périodes possibles en Y, selon les interactions de la balle avec la barre centrale. Notons que la période ``complète'' peut être une des trois périodes présentées en bleu sur ce graphique selon la valeur de \(y_{max}\).}
    \label{fig:typesPeriodes}
 \end{figure}
 
 \subsection{Cas $ y_{max}<0 $}
-Comme on l'avait déjà prédit à la section \ref{sec:zoneInter}, il est tout de suite possible de distinguer le cas où \(\frac{\dot{y_0}^2}{2} + gh_0 \leq 0\) \footnote{Le zéro des énergies potentielles est placé en \(y=0\)} (premier mouvement en bleu sur la figure \ref{fig:typesPeriodes}) puisque la balle ne peut alors jamais toucher la barre centrale et le mouvement redevient alors périodique, quelle que soit la valeur des autres paramètres.
+Comme on l'avait déjà prédit à la section \ref{sec:zoneInter}, il est tout de suite possible de distinguer le cas où \(y_{max}=\frac{\dot{y}_0^2}{2} + gh_0 \leq 0\) \footnote{Le zéro des énergies potentielles est placé en \(y=0\)} (premier mouvement en bleu sur la figure \ref{fig:typesPeriodes}) puisque la balle ne peut alors jamais toucher la barre centrale et le mouvement redevient alors périodique, quelle que soit la valeur des autres paramètres.
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{bifYG981W0Reg.png}
-      \caption[Diagramme de Bifurcation en y: g=9.81 \( \omega=0 \; \, \frac{\dot{y_0}^2}{2} + gh_0 \leq 0\)]{Diagramme de Bifurcation en y en fonction de la longueur relative de la barre centrale. Cas g=9.81 avec \(\frac{\dot{y}_0^2}{2} + gh_0 \leq 0\). On remarque que le mouvement redevient logiquement périodique.}
+      \caption[Diagramme de Bifurcation en y: g=9.81 \( \omega=0 \; \, y_{max} \leq 0\)]{Diagramme de Bifurcation en y en fonction de la longueur relative de la barre centrale. Cas g=9.81 avec \(y_{max}=\frac{\dot{y}_0^2}{2} + gh_0 \leq 0\). On remarque que le mouvement redevient logiquement périodique.}
 \end{figure}
 
 \subsection{Cas $ y_{max} \geq 0 $}
-Lorsque \(\frac{\dot{y}_0^2}{2} + gh_0 \geq 0\), le problème peut aussi se simplifier en remarquant que la période la plus longue est la somme des deux périodes plus courtes\label{propr:sommePeriodes}. Mais il existe donc toujours deux périodes indépendantes, ce qui signifie que le nombre d'états échantillonnables en utilisant la période longue uniquement est infini, ce qui explique l'allure du graphe obtenu.
+Lorsque \(y_{max}\geq 0\), le problème peut aussi un peu se simplifier en remarquant que la période la plus longue est la somme des deux périodes plus courtes\label{propr:sommePeriodes}. Mais il existe donc toujours deux périodes indépendantes, ce qui signifie que le nombre d'états échantillonnables en utilisant la période longue uniquement est infini, ce qui explique l'allure du graphe obtenu.
 
 Si le mouvement reste malgré tout périodique, sa période serait donc forcément une combinaison linéaire entière des trois périodes élémentaires présentées plus haut.
 \begin{figure}[H]
@@ -235,97 +236,119 @@ Dès lors, il suffit de trouver les coefficients de cette combili pour valider l
       \caption[Recherche d'une période pour le mouvement en y: g=9.81 \omega=0.]{Section de Poincaré montrant le résultat de la recherche d'une période pour le mouvement en y par combinaison linéaire des trois périodes de base. Cas non trivial. \label{fig:poincNonTrivial}}
 \end{figure}
 
-Cependant, il existe des conditions initiales pour lesquelles cette recherche n'a pas abouti. L'algorithme de recherche utilisé se limite à des périodes constituées d'entre zéro et trente cycles complets, d'entre zéro et trente cycles courts ``par au dessus'' et d'entre zéro et un cycle court ``par en dessous'' \footnote{Puisque comme on l'a vu page \pageref{propr:sommePeriodes}, une période longue correspond à la somme des deux périodes plus courtes}. Dès lors, il se pourrait que le mouvement en y soit malgré tout régulier mais de période trop longue par rapport aux périodes que cette recherche est capable de tester. Le mouvement présente cependant tous les indicateurs d'un mouvement chaotique: sensibilité au conditions initiales et section de poincaré très étalée. De plus, le fait que même lorsqu'elle existe, la période soit beaucoup plus longue que la période de base du système sans la barre centrale est aussi un indice de la transition vers le chaos.
+Cependant, il existe des conditions initiales pour lesquelles cette recherche n'a pas abouti. L'algorithme de recherche utilisé se limite à des périodes constituées d'entre zéro et trente cycles complets, d'entre zéro et trente cycles courts ``par au dessus'' et d'entre zéro et un cycle court ``par en dessous''\footnote{Puisque comme on l'a vu page \pageref{propr:sommePeriodes}, une période longue correspond à la somme des deux périodes plus courtes}. Dès lors, il se pourrait que le mouvement en y soit malgré tout régulier mais de période trop longue par rapport aux périodes que cette recherche est capable de tester. Le mouvement présente cependant tous les indicateurs d'un mouvement chaotique: sensibilité au conditions initiales et section de Poincaré très étalée. De plus, le fait que même lorsqu'elle existe, la période soit beaucoup plus longue que la période de base du système sans la barre centrale est aussi un indice de la transition vers le chaos.
 \begin{figure}[h!]
    \includegraphics[width=\textwidth]{sensiG981W0.png}
-      \caption[Sensibilité aux conditions initiales: g=9.81 \omega=0.]{Sensibilité du mouvement en Y aux différences de conditions initiales d'ordre \(10^{-3}\). Cas g=9.81.}
+      \caption[Sensibilité aux conditions initiales: g=9.81 \omega=0.]{Sensibilité du mouvement en Y aux différences de conditions initiales d'ordre \(10^{-3}\).}
 \end{figure}
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{poincYG981W0Chaos.png}
       \caption[Section de Poincaré en y: g=9.81 \omega=0]{Superposition de trois sections de Poincaré en y pour des conditions initiales infiniment proches.\label{fig:poincGChaos}}
 \end{figure}
-Il faut cependant être prudent car même les mouvements étudiés précédemment et dont on sait maintenant qu'ils sont périodiques présentaient aussi une sensibilité aux conditions initiales. De plus avant d'interprêter le graphe \ref{fig:poincGChaos} il faut le mettre en comparaison avec ceux qu'on aurait obtenu sur des mouvements réguliers de très longue période en utilisant la période de base du système.
+Il faut cependant être prudent car même les mouvements étudiés précédemment et dont on sait maintenant qu'ils sont périodiques présentaient aussi une sensibilité aux conditions initiales. De plus avant d'interprêter le graphe \ref{fig:poincGChaos} il faut le mettre en comparaison avec le graphe qu'on aurait obtenu sur des mouvements réguliers de très longue période en utilisant la période de base du système.
 \begin{figure}[h!]
    \includegraphics[width=\textwidth]{poincYG981W0NoChaos.png}
-      \caption[Section de Poincaré en y d'un mouvement périodique: g=9.81 \omega=0]{Superposition de trois sections de Poincaré en y d'un mouvement périodique pour des conditions initiales infiniment proches. Ces sections sont faites non plus avec la période connue du mouvement mais bien avec la période de base du système sans la barre centrale afin de montrer l'allure d'une section de poincaré avec la mauvaise période sur un mouvement périodique mais de période très longue. Le mouvement est le même qu'à la figure \ref{fig:poincNonTrivial}}
+      \caption[Section de Poincaré en y d'un mouvement périodique: g=9.81 \omega=0]{Superposition de trois sections de Poincaré en y d'un mouvement périodique pour des conditions initiales infiniment proches. Ces sections sont faites non plus avec la période connue du mouvement mais bien avec la période de base du système sans la barre centrale afin de montrer l'allure d'une section de Poincaré avec la mauvaise période sur un mouvement périodique mais de période très longue. Le mouvement est le même qu'à la figure \ref{fig:poincNonTrivial}}
 \end{figure}
 
-La différence entre les deux sections de poincaré apparaît quand même assez clairement et on constate donc qu'il existe bien des conditions initiales pour lesquelles le mouvement en y devient chaotique dans le cas du billard vertical avec barre centrale fixe. Ceci peut s'expliquer par le fait qu'il n'existe pas forcément un rapport rationnel entre le temps qu'il faut à la balle pour accomplir un cycle en x et le temps qu'il faut à la balle pour accomplir un cycle en y. En effet si ce rapport existait, après le PPCM des deux temps, la balle reviendrait exactement au même état (position et vitesse) et recommencerait donc le même mouvement, ainsi que les mêmes interactions avec la barre centrale (puisque celle-ci est fixe), ce qui signifie que le mouvement est alors totalement périodique. On voit donc ici de nouveau apparaître l'influence du mouvement en x sur la périodicité du mouvement en y.
+La différence entre les deux sections de Poincaré apparaît quand même assez clairement et on constate donc qu'il existe bien des conditions initiales pour lesquelles le mouvement en y devient chaotique dans le cas du billard vertical avec barre centrale fixe. Ceci peut s'expliquer par le fait qu'il n'existe pas forcément un rapport rationnel entre le temps qu'il faut à la balle pour accomplir un cycle en x et le temps qu'il faut à la balle pour accomplir un cycle en y. En effet si ce rapport existait, après le PPCM des deux temps, la balle reviendrait exactement au même état (position et vitesse) et recommencerait donc le même mouvement, ainsi que les mêmes interactions avec la barre centrale (puisque celle-ci est fixe), ce qui signifie que le mouvement est alors totalement périodique. On voit donc ici de nouveau apparaître l'influence du mouvement en x sur la périodicité du mouvement en y.
 
 \subsection{Cas $ y_{max} \gg \frac{L}{2} $}
 
 Comme on l'avait déjà prédit à la section \ref{sec:choixCondInit}, il est aussi possible de distinguer le cas où \(y_{max} \gg \frac{L}{2} \). En effet, le comportement de la balle se rapproche alors du comportement sans gravité.
 \begin{figure}[h!]
-   \includegraphics[width=\textwidth]{bifYG981W0YMaxGrand.png}
-      \caption[Diagramme de Bifurcation en y: g=9.81 \(\omega=0 \; y_{max} \gg \frac{L}{2} \)]{Superposition de deux diagrammes de bifurcation de la position en y de la balle en fonction de la longueur relative de la barre centrale pour des conditions initiales infiniment proches. Cas g=9.81 et \(y_{max} \gg \frac{L}{2}\).}
+   \includegraphics[width=\textwidth]{bifYYDotG981W0L07.png}
+      \caption[Diagramme de Bifurcation en y en fonction de \(y_{max}\): g=9.81 ]{Diagramme de bifurcation de la position en y de la balle en fonction de \( \dot{y}_0\) et donc indirectement en fonction de \( y_{max} \). \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=2 \; \frac{l_0}{L}=0.6 \; g=9.81 \; \omega=0 \; \text{Nombre de Rebonds}=1000\). Pas de bifurcation exponentiel.}
 \end{figure}
-Le diagramme de bifurcation est effectivement similaire à celui qu'on avait obtenu à la section \ref{sec:xRegHor} ce qui signifie donc que le mouvement redevient bien périodique lorsque \( y_{max} \gg \frac{L}{2} \)
+Le diagramme de bifurcation tend effectivement vers celui qu'on avait obtenu à la section \ref{sec:xRegHor} lorsque \(y_{max}>>\frac{L}{2}\) ce qui signifie donc que le mouvement redevient alors bien périodique.
 
 
 \chapter{Barre Centrale Respirante}
 
 \section{Billard Horizontal}
-Comme annoncé au chapitre \ref{chap:modelisat}, voici de nouveau pour commencer un diagramme de bifurcation en x du mouvement en fonction cette fois-ci de la valeur de \(A \omega^2 \). A priori, on peut choisir n'importe quelle valeur non triviale de \(^{l_0}/_L\), puisque le mouvement en x était apparu toujours parfaitement périodique dans la section \ref{sec:xRegHor}.
+\subsection{Chaos en x}
+Comme annoncé au chapitre \ref{chap:modelisat}, voici de nouveau pour commencer un diagramme de bifurcation en x du mouvement en fonction cette fois-ci de la valeur de \(\omega^2 \). A priori, on peut choisir n'importe quelle valeur non triviale de \(^{l_0}/_L\), puisque le mouvement en x était apparu toujours parfaitement périodique dans la section \ref{sec:xRegHor}.
 \begin{figure}[h!]
    \includegraphics[width=\textwidth]{bifXWG0L04.png}
-      \caption[Diagramme de bifurcation de y en fonction de \(\omega ^2\): g=0, \(^{l_0}/_L=0.4\)]{Diagramme de bifurcation de y en fonction de \(\omega ^2\): g=0   \(^{l_0}/_L=0.4\)}
+      \caption[Diagramme de bifurcation de x en fonction de \(\omega ^2\): g=0, \(^{l_0}/_L=0.4\)]{Diagramme de bifurcation de y en fonction de \(\omega ^2\): g=0   \(^{l_0}/_L=0.4\)}
 \end{figure}
 
 Cette fois-ci, le mouvement n'apparaît plus du tout périodique. La transition vers la chaos s'opère très rapidement et il faut utiliser un graphe logarithmique pour la visualiser au mieux.
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{bifXTrans.png}
-      \caption[Transition du mouvement vers le chaos en fontion de \(A \omega ^2 \): g=0]{Diagramme de bifurcation montrant la transition du mouvement vers le chaos.\\ \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=2 \; \dot{y}_0=0.2 \; \frac{l_0}{L}=0.4 \; g=0 \; \text{Nombre de Rebonds}=500\) Pas de bifurcation exponentiel.}
+      \caption[Transition du mouvement vers le chaos en fontion de \(\omega ^2 \): g=0]{Diagramme de bifurcation montrant la transition du mouvement vers le chaos.\\ \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=2 \; \dot{y}_0=0.2 \; \frac{l_0}{L}=0.4 \; g=0 \; \text{Nombre de Rebonds}=500\) Pas de bifurcation exponentiel.}
 \end{figure}
 
-En réalité, il est plus judicieux de prendre comme paramètre de bifurcation \( \frac{A \omega ^2 }{\dot{x}_0}\)\footnote{Par analogie avec \ref{sec:choixCondInit}: si \(\dot{x}_0>>A \omega ^2\), alors les caractéristiques du mouvement tendent vers celles d'un mouvement avec barre centrale au repos.}. Ainsi, on peut faire apparaître le même type de transition vers le chaos pour des valeurs de \(\omega^2\) et \(\dot{x}_0\) beaucoup plus élevées.
+Il est possible de faire apparaître le même type de transition vers le chaos pour des valeurs de \(\omega^2\) et \(\dot{x}_0\) beaucoup plus élevées.\footnote{Par analogie avec \ref{sec:choixCondInit}: si \(\dot{x}_0>>\omega ^2\), alors les caractéristiques du mouvement tendent vers celles d'un mouvement avec barre centrale au repos.}
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{bifXTrans1.png}
-      \caption[Transition du mouvement vers le chaos pour une vitesse de départ en x plus élevée]{Diagramme de bifurcation montrant la transition du mouvement vers le chaos en fonction du paramètre \( A \omega ^2 \).\\ \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=20 \; \dot{y}_0=0.2 \; \frac{l_0}{L}=0.4 \; g=0 \; \text{Nombre de Rebonds}=500\) Pas de bifurcation exponentiel. On remarque que la transition se passe à une valeur de \(\omega ^2\) approximativement 10.000 fois plus élevée que précédemment pour une valeur de \(\dot{x}_0\) seulement 10 fois plus élevée. }
+      \caption[Transition du mouvement vers le chaos pour une vitesse de départ en x plus élevée]{Diagramme de bifurcation montrant la transition du mouvement vers le chaos en fonction du paramètre \( \omega ^2 \).\\ \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=20 \; \dot{y}_0=0.2 \; \frac{l_0}{L}=0.4 \; g=0 \; \text{Nombre de Rebonds}=500\) Pas de bifurcation exponentiel. On remarque que la transition se passe à une valeur de \(\omega ^2\) approximativement 10.000 fois plus élevée que précédemment pour une valeur de \(\dot{x}_0\) seulement 10 fois plus élevée. }
 \end{figure}
+Il est donc en réalité plus judicieux de prendre comme paramètre de bifurcation \( \frac{ \omega ^2 }{\dot{x}_0}\)
 
-Une section de poincaré pour une région prédite chaotique par le diagramme de bifurcation confirme cette prédiction.
+Une section de Poincaré pour une région prédite périodique par le diagramme de bifurcation confirme cette prédiction.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{poincXG0WE-9.png}
+      \caption[Section de Poincaré périodique: g=0 \(\omega=5 \cdot 10^{-9}\)]{Superposition de trois sections de Poincaré pour des conditions initiales infiniment proches. Cas g=0 \(\omega=5 \cdot 10^{-9}\).}
+\end{figure}
+Une section de Poincaré pour une région transitoire dans le diagramme de bifurcation est effectivement transitoire.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{poincXG0WTrans.png}
+      \caption[Section de Poincaré transitoire: g=0 \(\omega=5 \cdot 10^{-7}\)]{Superposition de trois sections de Poincaré pour des conditions initiales infiniment proches. Cas g=0 \(\omega=5 \cdot 10^{-7}\).}
+\end{figure}
+Une section de Poincaré pour une région prédite chaotique par le diagramme de bifurcation confirme cette prédiction.
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{poincXG0W1.png}
       \caption[Section de Poincaré chaotique: g=0 \(\omega=1\)]{Superposition de trois sections de Poincaré pour des conditions initiales infiniment proches. Cas g=0 \(\omega=1\).}
 \end{figure}
 
-Une section de poincaré pour une région prédite périodique par le diagramme de bifurcation confirme cette prédiction.
-\begin{figure}[H]
-   \includegraphics[width=\textwidth]{poincXG0WE-9.png}
-      \caption[Section de Poincaré périodique: g=0 \(\omega=5 \cdot 10^{-9}\)]{Superposition de trois sections de Poincaré pour des conditions initiales infiniment proches. Cas g=0 \(\omega=5 \cdot 10^{-9}\).}
-\end{figure}
+\subsection{Chaos en y}
 
-Une section de poincaré pour une région transitoire dans le diagramme de bifurcation est effectivement transitoire.
+Il est aisé de prédire la nature du mouvement en y en utilisant les conclusions des sections \ref{sec:chaosXY} et \ref{sec:xRegHor}: il sera chaotique quand le mouvement en x sera chaotique et régulier quand le mouvement en x sera régulier. Cependant, une section de poincaré ou un diagramme de bifurcation montrent toujours un mouvement régulier dont la période serait doublée. Ceci est dû au fait que, comme nous l'avons effectivement vu en \ref{sec:xRegHor}, le nombre d'état échantillonnables se limite à deux selon que la balle a accumulé un déphasage d'un nombre pair ou impair de demi-périodes. Cela ne signifie pour autant pas que le mouvement est absolument périodique, car ces états peuvent s'enchaîner de manière totalement imprévisible. Exceptionellement, un graphe de la position en y en fonction du temps est nécessaire pour se rendre compte de cette forme de chaos, même si insuffisant pour le démontrer rigoureusement.
 \begin{figure}[H]
-   \includegraphics[width=\textwidth]{poincXG0WTrans.png}
-      \caption[Section de Poincaré transitoire: g=0 \(\omega=5 \cdot 10^{-9}\)]{Superposition de trois sections de Poincaré pour des conditions initiales infiniment proches. Cas g=0 \(\omega=5 \cdot 10^{-7}\).}
+   \includegraphics[width=\textwidth]{posYTG0WE-8.png}
+      \caption{Position en y en fonction du temps ``probablement'' périodique. Cas g=0 \(\omega=10^{-8}\)}
 \end{figure}
-
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{posYTG0W2.png}
+      \caption[Position en y en fonction du temps ``probablement'' chaotique. Cas g=0 \(\omega=2\)]{Position en y en fonction du temps ``probablement'' chaotique, malgré le fait qu'il n'y ait que deux états échantillonnables. Cas g=0 \(\omega=2\)}
+\end{figure}
 \section{Billard Vertical}
-Voici tout d'abord un diagramme de bifurcation de la position en x en fonction cette fois-ci directement de \( \frac{A \omega ^2 }{\dot{x}_0}\)
-
-
-
+\subsection{Chaos en x}
+Voici tout d'abord un diagramme de bifurcation de la position en x en fonction cette fois-ci directement de \( \frac{ \omega ^2 }{\dot{x}_0}\).
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{bifXG981WL04.png}
+      \caption[Diagramme de bifurcation de x en fonction de \( \frac{\omega ^2}{\dot{x}_0}\): g=9.81, \(^{l_0}/_L=0.4\)]{Diagramme de bifurcation de x en fonction de \( \frac{\omega ^2}{\dot{x}_0}\) \(^{l_0}/_L=0.4\)}
+\end{figure}
+A nouveau, le mouvement n'apparaît plus du tout périodique et la transition vers la chaos s'opère très rapidement: il faut utiliser un graphe logarithmique pour la visualiser au mieux.
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{bifXG981WTrans.png}
-      \caption[Transition du mouvement vers le chaos en fonction de \( \frac{A \omega ^2 }{\dot{x}_0}\): g=9.81]{Diagramme de bifurcation montrant la transition du mouvement vers le chaos.\\ \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=2 \; \dot{y}_0=0.2 \; \frac{l_0}{L}=0.4 \; g=9.81 \; \text{Nombre de Rebonds}=500\) Pas de bifurcation exponentiel.}
+      \caption[Transition du mouvement vers le chaos en fonction de \( \frac{\omega ^2 }{\dot{x}_0}\): g=9.81]{Diagramme de bifurcation montrant la transition du mouvement vers le chaos.\\ \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=2 \; \dot{y}_0=0.2 \; \frac{l_0}{L}=0.4 \; g=9.81 \; \text{Nombre de Rebonds}=500\) Pas de bifurcation exponentiel.}
 \end{figure}
 
+Une section de Poincaré pour une région prédite périodique par le diagramme de bifurcation confirme cette prédiction.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{poincXG981WE-12.png}
+      \caption[Section de Poincaré périodique: g=981 \(\omega=5 \cdot 10^{-12}\)]{Superposition de trois sections de Poincaré pour des conditions initiales infiniment proches. Cas g=9.81 \(\omega=5 \cdot 10^{-12}\).}
+\end{figure}
+Une section de Poincaré pour une région transitoire dans le diagramme de bifurcation est effectivement transitoire.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{poincXG981WE-4.png}
+      \caption[Section de Poincaré transitoire: g=9.81 \(\omega=10^{-4}\)]{Superposition de trois sections de Poincaré pour des conditions initiales infiniment proches. Cas g=9.81 \(\omega=10^{-4}\).}
+\end{figure}
+Une section de Poincaré pour une région prédite chaotique par le diagramme de bifurcation confirme cette prédiction.
+\begin{figure}[H]
+   \includegraphics[width=\textwidth]{poincXG981W2.png}
+      \caption[Section de Poincaré chaotique: g=9.81 \(\omega=2\)]{Superposition de trois sections de Poincaré pour des conditions initiales infiniment proches. Cas g=9.81 \(\omega=2\).}
+\end{figure}
 
-
-
-
+\subsection{Chaos en y}
+En utilisant la conclusions de la section \ref{sec:chaosXY}, il est au moins possible de prédire que le mouvement en y est chaotique si le mouvement en x est chaotique. D'autre part, puisque le mouvement en x n'apparaît comme périodique que lorsque \(\omega ^2 << \dot{x}_0 \) et peut être négligé devant \( \dot{x} \), la question de savoir si le mouvement en y est alors périodique se ramène en fait à la problématique de la section \ref{sec:billVert}.
 
 
 \chapter{Conclusion}
 
-%\nocite{*}
+
 %\listoffigures
 %\addcontentsline{toc}{chapter}{\listfigurename}
-
-%\bibliographystyle{alpha}
-%\bibliography{rapport.bib}
-%\addcontentsline{toc}{chapter}{Bibliographie}
-
-
 \end{document}

@@ -1,8 +1,8 @@
 %L est la moitié de la longueur du carré, contrairement au L du rapport!
 clear all; close all;
 
-paramStep=0.025;
-paramTable=[0:paramStep:1];
+paramStep=2.5;
+paramTable=[0:paramStep:250];
 
 global g L l omega C
 
@@ -10,12 +10,12 @@ L=1;
 C=1;
 
 %C'est ici que ça se passe
-rebondsMax=500;
-g=0;
+rebondsMax=1000;
+g=9.81;
 %l=0.4;
 omega=0;
 y0=0.9;
-yDot0=10;
+yDot0=200;
 x0=0.1;
 xDot0=0.7;
 %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -74,7 +74,7 @@ axis([paramTable(1)-0.2 paramTable(end)+.2 -L-0.1 L+0.4])
 title("Diagramme de bifurcation. Echantillonage=Periode du mouvement en y en l'absence de barre centrale")
 text(paramTable(end)+0.05, L-0.1, ["x0= ", num2str(x0),"  y0= ", num2str(y0)]);
 text(paramTable(end)+0.05, L-0.2, ["xDot0= ", num2str(xDot0),"  yDot0= ", num2str(yDot0)]);
-text(paramTable(end)+0.05, L-0.3, ["g= " num2str(g) "  l0/L= " num2str(l)]);
+text(paramTable(end)+0.05, L-0.3, ["g= " num2str(g) "  omega " num2str(omega)]);
 text(-0.1,L+0.25,["Nombre de rebonds: " num2str(rebondsMax)]);
 text(-0.1,L+0.18,"Taille de l echantillon: ");
 set(gca(),"xtick",paramTable(1:4:end), "ytick", [-1 -0.5 0 0.5 y0 1]);

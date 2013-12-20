@@ -14,9 +14,9 @@ yGlob3=[];
 
 %C'est ici que ça se passe
 rebondsMax=5000;
-g=0;
+g=9.81;
 l=0.4;
-omega=5E-4;
+omega=2;
 y0=0.6;
 yDot0=0.2;
 x0=0.1;
@@ -85,15 +85,15 @@ yGlob3=yGlob3(:,[1 3]);
 
 figure('NumberTitle','on','Name','Section de Poincare','Renderer','OpenGL','Color','w','Position',[200 200 600 600])
 title("Section de Poincare. Echantillonage=2L/xDot0")
-text(L+0.05, max([yGlob(:,2);yGlob2(:,2)])+0.4, ["x0= ", num2str(x0),"  y0= ", num2str(y0)]);
-text(L+0.05, max([yGlob(:,2);yGlob2(:,2)])+0.25, ["xDot0= ", num2str(xDot0),"  yDot0= ", num2str(yDot0)]);
-text(L+0.05, max([yGlob(:,2);yGlob2(:,2)])+0.1, ["g= " num2str(g) "  omega= " num2str(omega) "  lzero/L= " num2str(l)]);
-text(L+0.05, max([yGlob(:,2);yGlob2(:,2)]-0.25), ["Taille de l echantillon: " num2str(length(yGlob))]);
-text(L+0.05, max([yGlob(:,2);yGlob2(:,2)]-0.4),["Nombre de rebonds: " num2str(rebondsMax)]);
+text(L+0.05, max([yGlob(:,2);yGlob2(:,2)])-1, ["x0= ", num2str(x0),"  y0= ", num2str(y0)]);
+text(L+0.05, max([yGlob(:,2);yGlob2(:,2)])-5, ["xDot0= ", num2str(xDot0),"  yDot0= ", num2str(yDot0)]);
+text(L+0.05, max([yGlob(:,2);yGlob2(:,2)])-9, ["g= " num2str(g) "  omega= " num2str(omega) "  lzero/L= " num2str(l)]);
+text(L+0.05, max([yGlob(:,2);yGlob2(:,2)]-13), ["Taille de l echantillon: " num2str(length(yGlob))]);
+text(L+0.05, max([yGlob(:,2);yGlob2(:,2)]-17),["Nombre de rebonds: " num2str(rebondsMax)]);
 axis([-L-.1 L+.4 min([yGlob(:,2);yGlob2(:,2)])-1 max([yGlob(:,2);yGlob2(:,2)])+1])
 line([-L -L],[min([yGlob(:,2);yGlob2(:,2)])-1 max([yGlob(:,2);yGlob2(:,2)])+1],"MarkerSize", 7);
 line([L L],[min([yGlob(:,2);yGlob2(:,2)])-1 max([yGlob(:,2);yGlob2(:,2)])+1],"MarkerSize", 7);
-set(gca(),"ytick", [-10:0.5:10 xDot0], "xtick", [-1 -0.5 0 0.5 xDot0 1]);
+set(gca(),"ytick", [-50:2:50 xDot0], "xtick", [-1 -0.5 0 0.5 xDot0 1]);
 xlabel('Coordonnee x de la balle')
 ylabel('Vitesse en x de la balle')
 grid on;
