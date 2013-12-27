@@ -9,7 +9,7 @@
 \title{Projet Chaos}
 \subtitle{Billard Carré avec Barre Centrale}
 \author[J. Chi, N. Dwek]{Jun Nuo Chi, Nathan Dwek}
-%\institute{Université Libre de Bruxelles}
+\institute{Ecole Polytechnique de Bruxelles}
 \date{8 janvier 2014}
 \begin{document}
   \frame{\titlepage}
@@ -26,37 +26,67 @@
     \pause \item Applications dans de nombreux domaines: météorologie, finance, mécanique \ldots
     \pause \item Etude du mouvement d'une balle dans un billard carré muni d'une barre centrale respirante en fonction des paramètres du système:
     \begin{itemize}
-      \item Orientation du billard: vertical ou horizontal 
-      \item Paramètres de respiration de la barre: \(l={\color{red}l_0}(1+sin({\color{red}\omega} t))\)
-      \item Conditions initiales de la balle: position et vitesse initiales
+      \pause \item Orientation du billard: vertical ou horizontal 
+      \pause \item Paramètres de respiration de la barre: \(l={\color{red}l_0}(1+sin({\color{red}\omega} t))\)
+      \pause \item Conditions initiales de la balle: position et vitesse initiales
     \end{itemize}
   \end{itemize}
   \end{frame}
+
   \section{Modélisation}
+
   \begin{frame}{Modélisation}
   \framesubtitle{Modélisation du Mouvement et des Rebonds - Résolution Numérique}
   \begin{itemize}
-    \item Mouvement composé d'une suite de déplacement continus:\pause
-    \begin{equation*}
-      \begin{cases}
-        \ddot{x}=0\\
-        \ddot{y}=-g\\
-      \end{cases}
-    \end{equation*}
-    \pause \item
+    \item Mouvement composé d'une suite de déplacement continus:\\
+    \pause \begin{center}
+      \(\begin{cases}
+        {\textstyle \ddot{x}=0}\\
+        {\textstyle \ddot{y}=-g}\\
+      \end{cases}\)
+    \end{center}
+    \pause \item Déplacement interrompu par un rebond qui définit les conditions initiales pour le déplacement suivant
+    \begin{itemize}
+      \pause \item Rebond sur une paroi extérieure du billard:
+      \begin{itemize}
+        \item \(x=\pm \frac{L}{2} \text{ ou } y=\pm \frac{L}{2}\)
+        \item Simple inversion de la vitesse selon une des coordonnées 
+      \end{itemize}
+      \pause \item Rebond sur la barre centrale:
+      \begin{itemize}
+        \item \(\lvert x \rvert \leq l_0(1+sin(\omega t)) \text{ et } y=0\)
+        \item Transfert de quantité de mouvement avec \({\scriptstyle m_{barre}>>m_{balle}}\):
+        \[\begin{cases}
+          \dot{x}^+=C\dot{x}^- +  (\text{sgn}(x^*))(1+C)cos(\omega t^*)\omega\\
+          \dot{y}^+=-C \dot{y}^-
+        \end{cases}\]
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+  \end{frame}
+
+
+  \begin{frame}{Modélisation}
+  \framesubtitle{Considérations Théoriques}
+  \begin{itemize}
+     \item Pas de transfert de quantité de mouvement en x \(\rightleftharpoons\) y ou système \(\rightleftharpoons\) y
   \end{itemize}
 
   \end{frame}
-  \begin{frame}{Modélisation}
-  \framesubtitle{Considérations Théoriques}  
-  \end{frame}
+  
   \section{Barre Centrale au Repos}
+  
   \begin{frame}
   \end{frame}
+  
   \section{Barre Centrale Respirante}
+  
   \begin{frame}
   \end{frame}
+  
   \section{Conclusion}
+  
   \begin{frame}
   \end{frame}
+  
 \end{document}
