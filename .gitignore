@@ -12,3 +12,10 @@ bvp4c.m
 Rapport Fostella.pdf
 Conseils.pdf
 *.toc
+*.nav
+*.out
+*.snm
+genGraph*
+isPeriode.m
+*.swp
+CHI*

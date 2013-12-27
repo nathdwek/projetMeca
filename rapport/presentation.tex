@@ -1,0 +1,62 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{PaloAlto}
+\usecolortheme{seahorse}
+\usepackage{color}
+
+
+
+\title{Projet Chaos}
+\subtitle{Billard Carré avec Barre Centrale}
+\author[J. Chi, N. Dwek]{Jun Nuo Chi, Nathan Dwek}
+%\institute{Université Libre de Bruxelles}
+\date{8 janvier 2014}
+\begin{document}
+  \frame{\titlepage}
+  \section{Introduction}
+  \begin{frame}{Introduction}
+  \framesubtitle{Théorie du Chaos - But du Projet}
+  \begin{itemize}
+    \item Système déterministe mais non prédictible à long terme
+    \begin{itemize}
+      \item Possède des équations d'évolution déterministes
+      \pause \item Sensible aux conditions initiales
+      \item Non linéaire (superposition non applicable)
+    \end{itemize}
+    \pause \item Applications dans de nombreux domaines: météorologie, finance, mécanique \ldots
+    \pause \item Etude du mouvement d'une balle dans un billard carré muni d'une barre centrale respirante en fonction des paramètres du système:
+    \begin{itemize}
+      \item Orientation du billard: vertical ou horizontal 
+      \item Paramètres de respiration de la barre: \(l={\color{red}l_0}(1+sin({\color{red}\omega} t))\)
+      \item Conditions initiales de la balle: position et vitesse initiales
+    \end{itemize}
+  \end{itemize}
+  \end{frame}
+  \section{Modélisation}
+  \begin{frame}{Modélisation}
+  \framesubtitle{Modélisation du Mouvement et des Rebonds - Résolution Numérique}
+  \begin{itemize}
+    \item Mouvement composé d'une suite de déplacement continus:\pause
+    \begin{equation*}
+      \begin{cases}
+        \ddot{x}=0\\
+        \ddot{y}=-g\\
+      \end{cases}
+    \end{equation*}
+    \pause \item
+  \end{itemize}
+
+  \end{frame}
+  \begin{frame}{Modélisation}
+  \framesubtitle{Considérations Théoriques}  
+  \end{frame}
+  \section{Barre Centrale au Repos}
+  \begin{frame}
+  \end{frame}
+  \section{Barre Centrale Respirante}
+  \begin{frame}
+  \end{frame}
+  \section{Conclusion}
+  \begin{frame}
+  \end{frame}
+\end{document}
