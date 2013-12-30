@@ -10,17 +10,17 @@ C=1;
 
 
 %C'est ici que ça se passe
-rebondsMax=100;
+rebondsMax=1000;
 g=0;
 l=0.4;
-omega=2;
+omega=0;
 y0=0.2;
-yDot0=2;
+yDot0=1;
 x0=0.1;
-xDot0=1;
+xDot0=pi;
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 dynamicView=0;
-tStep=0.001;
+tStep=0.002;
 firstPick=0;
 longuePeriode=getPeriode("y",x0,y0,xDot0,yDot0);
 courtePeriode=getCourtePeriode(y0,yDot0);
@@ -69,21 +69,20 @@ box on;
 
 
 
-
-%figure('NumberTitle','on','Name','Trajectoire','Renderer','OpenGL','Color','w','Position',[100 100 600 600])
-%title("Trajectoire de la balle")
-%text(L+0.05, L+0.05, ["x0= ", num2str(x0),"  y0= ", num2str(y0)]);
-%text(L+0.05, L-0.05, ["xDot0= ", num2str(xDot0),"  yDot0= ", num2str(yDot0)]);
-%text(L+0.05, L-0.15, ["g= " num2str(g) "  omega= " num2str(omega) "  lzero/L= " num2str(l)]);
-%text(L+0.05, L-0.25,["Nombre de rebonds: " num2str(rebondsMax)]);
-%xlabel('X')
-%ylabel('Y')
-%hold on;
-%line([-L L L -L -L ],[-L -L +L +L -L],"linewidth", 3);
-%grid on;box on;
-%axis([-1.1 1.3 -1.1 1.1])
-%set(gca(),"ytick", [-1 -0.5 0 0.5 y0 1]);
-%plot(yGlob(:,1),yGlob(:,2))
+figure('NumberTitle','on','Name','Trajectoire','Renderer','OpenGL','Color','w','Position',[100 100 600 600])
+title("Trajectoire de la balle")
+text(L+0.05, L+0.05, ["x0= ", num2str(x0),"  y0= ", num2str(y0)]);
+text(L+0.05, L-0.05, ["xDot0= ", num2str(xDot0),"  yDot0= ", num2str(yDot0)]);
+text(L+0.05, L-0.15, ["g= " num2str(g) "  omega= " num2str(omega) "  lzero/L= " num2str(l)]);
+text(L+0.05, L-0.25,["Nombre de rebonds: " num2str(rebondsMax)]);
+xlabel('X')
+ylabel('Y')
+hold on;
+line([-L L L -L -L ],[-L -L +L +L -L],"linewidth", 3);
+grid on;box on;
+axis([-1.1 1.3 -1.1 1.1])
+set(gca(),"ytick", [-1 -0.5 0 0.5 y0 1]);
+plot(yGlob(:,1),yGlob(:,2))
 
 %figure('NumberTitle','on','Name','Plan des phases','Renderer','OpenGL','Color','w','Position',[150 150 600 600])
 %plot(yGlob(:,2),yGlob(:,4))

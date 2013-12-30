@@ -1,18 +1,24 @@
 \documentclass{beamer}
-\usepackage[utf8]{inputenc}
 \usetheme{Goettingen}
 \usecolortheme{seahorse}
+
 \usepackage{color}
+\usepackage[utf8]{inputenc}
 
 
+\usepackage{pgfpages}
+\setbeameroption{show notes on second screen}
+\setbeamertemplate{note page}[default]
 
 \title{Projet Chaos}
 \subtitle{Billard Carré avec Barre Centrale}
 \author[J. Chi, N. Dwek]{Jun Nuo Chi, Nathan Dwek}
 \institute{Ecole Polytechnique de Bruxelles}
 \date{8 janvier 2014}
+
 \begin{document}
   \frame{\titlepage}
+  
   \section{Introduction}
   \begin{frame}{Introduction}
   \framesubtitle{Théorie du Chaos - But du Projet}
@@ -103,7 +109,7 @@
     \begin{itemize}
       \item Mouvement toujours régulier en x
       \item Mouvement en y:\\
-      \pause \includegraphics[width=0.8\textwidth]{bifYG981W0.png}
+      \pause \includegraphics[width=0.7\textwidth]{bifYG981W0.png}
     \end{itemize}
   \end{itemize}
   \end{frame}
@@ -111,10 +117,15 @@
   \begin{frame}{Barre Centrale au Repos}
   \framesubtitle{Interprêtation dans le Cas Billard Vertical}
   \begin{itemize}
-    \item Trois ``cycles'' dont deux de longueur indépendante en y
+    \item Mouvement formé d'une suite de trois ``cycles'' dont deux de longueur indépendante en y
     \begin{itemize}
-      \item Infinité d'états échantillonables \( \Rightarrow \)
-      \item Mouvement formé d'une suite de ces trois cycles
+      \item Infinité d'états échantillonables
+      \item Période potentielle = combili naturelle des longueurs de ces trois cycles
+      \begin{itemize}
+        \item Vérifié par des simulations
+        \item Période peut être très longue \(\Rightarrow\) indicateur de la transition vers le chaos
+        \item Mais une telle période ne semble pas toujours exister
+      \end{itemize}
     \end{itemize}
   \end{itemize}
   \end{frame}
