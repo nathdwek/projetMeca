@@ -1,22 +1,32 @@
 \documentclass[a4paper]{report}
-\usepackage[utf8]{inputenc}
-\usepackage{graphicx}
 \usepackage[frenchb]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subcaption}
+
 \usepackage{perpage}
 \MakePerPage{footnote}
-\usepackage{float}
+
 \usepackage{amsmath}
-\usepackage{subcaption}
+
+\usepackage{makeidx}
+\makeindex
 
 \title{Rapport - Projet Chaos\\Billard Carré avec Barre Centrale}
 \author{Jun Nuo Chi, Nathan Dwek}
 
 \begin{document}
+
 \maketitle
+
 \tableofcontents
+
 \begin{abstract}
 
-Le mouvement d'une bille à l'interieur d'un billard carré est bien régulier et il n'est pas difficile, à partir des conditions initiales de la bille, de prévoir la trajectoire que celle-ci prendra. Il suffit pourtant de faire une simple modification comme rajouter une barre centrale et le mouvement peut devenir totalement imprévisible et chaotique.
+Le mouvement d'une bille à l'intérieur d'un billard carré est bien régulier et il n'est pas difficile, à partir des conditions initiales de la bille, de prévoir la trajectoire que celle-ci prendra. Il suffit pourtant de faire une simple modification comme rajouter une barre centrale et le mouvement peut devenir totalement imprévisible et chaotique.
 Si cette barre est fixe, le mouvement reste périodique en x, et on peut montrer un lien fort entre cette périodicité en x et celle en y pour un grand nombre de conditions initiales, même non triviales. Cependant, dans le cas du billard vertical, la gravité peut déjà introduire une forme de chaos pour certaines conditions initiales. Lorsque la barre respire, les différents graphes effectués mettent en évidence des sytèmes presque toujours chaotiques à l'exception de certains cas fortement dégénérés.
 
 \end{abstract}
@@ -149,7 +159,7 @@ Ceci permet aussi de directement éliminer le diagramme des phases en y comme in
         \caption[Les quatres allures différentes du plan des phases en Y]{Les quatres allures différentes du plan des phases en Y, selon la présence ou non de la gravité, et selon la valeur de \(y_{max}=y_0 + \frac{v^2_{y0}}{2g}\). Les discontinuités sont marquées sur les graphes (lignes verticales), et correspondent à un changement brusque de la vitesse en Y sans changement de la position en Y, c'est-à-dire un rebond sur une paroi horizontale ou sur la barre centrale.}
 \end{figure}
 
-On remarque aussi que pour une même valeur de g, lorsque \(y_{max}\) augmente, le diagramme des phases se rapproche de plus en plus du diagramme des phases qu'on obtient pour g=0, ce qui est très facile à comprendre puisque si \(y_{max}>>\frac{L}{2}\), alors le mouvement dans le billard se fait avec une grande vitesse en y, et l'accélération de la pesanteur devient négligeable. Ceci sera utile pour trouver des conditions initiales qui donnent un mouvement dont les caractéristiques tendent vers celles d'un mouvement sans gravité.
+On remarque aussi que pour une même valeur de g, lorsque \(y_{max}\) augmente, le diagramme des phases se rapproche de plus en plus du diagramme des phases qu'on obtient pour g=0, ce qui est très facile à comprendre puisque si \(y_{max}\gg\frac{L}{2}\), alors le mouvement dans le billard se fait avec une grande vitesse en y, et l'accélération de la pesanteur devient négligeable. Ceci sera utile pour trouver des conditions initiales qui donnent un mouvement dont les caractéristiques tendent vers celles d'un mouvement sans gravité.
 \begin{figure}[h!]
    \includegraphics[width=\textwidth]{diagPhasesDegen.png}
       \caption[Diagramme des phases en Y avec g=9,81 dégénérant vers g=0]{Diagramme des phases en Y avec g=9.81 et \(y_{max}\gg 1 \) et dégénérant donc vers un diagramme des phases pour g=0.}
@@ -208,10 +218,10 @@ Ceci contredit la prédiction présentée au chapitre précédent, selon laquell
 \end{figure}
 
 \subsection{Cas $ y_{max}<0 $}
-Comme on l'avait déjà prédit à la section \ref{sec:zoneInter}, il est tout de suite possible de distinguer le cas où \(y_{max}=\frac{\dot{y}_0^2}{2} + gh_0 \leq 0\) \footnote{Le zéro des énergies potentielles est placé en \(y=0\)} (premier mouvement en bleu sur la figure \ref{fig:typesPeriodes}) puisque la balle ne peut alors jamais toucher la barre centrale et le mouvement redevient alors périodique, quelle que soit la valeur des autres paramètres.
+Comme on l'avait déjà prédit à la section \ref{sec:zoneInter}, il est tout de suite possible de distinguer le cas où \(y_{max}=y_0+\frac{\dot{y}_0^2}{2g} \leq 0\) \footnote{Le zéro des énergies potentielles est placé en \(y=0\)} (premier mouvement en bleu sur la figure \ref{fig:typesPeriodes}) puisque la balle ne peut alors jamais toucher la barre centrale et le mouvement redevient alors périodique, quelle que soit la valeur des autres paramètres.
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{bifYG981W0Reg.png}
-      \caption[Diagramme de Bifurcation en y: g=9.81 \( \omega=0 \; \, y_{max} \leq 0\)]{Diagramme de Bifurcation en y en fonction de la longueur relative de la barre centrale. Cas g=9.81 avec \(y_{max}=\frac{\dot{y}_0^2}{2} + gh_0 \leq 0\). On remarque que le mouvement redevient logiquement périodique.}
+      \caption[Diagramme de Bifurcation en y: g=9.81 \( \omega=0 \; \, y_{max} \leq 0\)]{Diagramme de Bifurcation en y en fonction de la longueur relative de la barre centrale. Cas g=9.81 avec \(y_{max}=y_0+\frac{\dot{y}_0^2}{2g} \leq 0\). On remarque que le mouvement redevient logiquement périodique.}
 \end{figure}
 
 \subsection{Cas $ y_{max} \geq 0 $}
@@ -260,7 +270,7 @@ Comme on l'avait déjà prédit à la section \ref{sec:choixCondInit}, il est au
    \includegraphics[width=\textwidth]{bifYYDotG981W0L07.png}
       \caption[Diagramme de Bifurcation en y en fonction de \(y_{max}\): g=9.81 ]{Diagramme de bifurcation de la position en y de la balle en fonction de \( \dot{y}_0\) et donc indirectement en fonction de \( y_{max} \). \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=2 \; \frac{l_0}{L}=0.6 \; g=9.81 \; \omega=0 \; \text{Nombre de Rebonds}=1000\). Pas de bifurcation exponentiel.}
 \end{figure}
-Le diagramme de bifurcation tend effectivement vers celui qu'on avait obtenu à la section \ref{sec:xRegHor} lorsque \(y_{max}>>\frac{L}{2}\) ce qui signifie donc que le mouvement redevient alors bien périodique.
+Le diagramme de bifurcation tend effectivement vers celui qu'on avait obtenu à la section \ref{sec:xRegHor} lorsque \(y_{max}\gg\frac{L}{2}\) ce qui signifie donc que le mouvement redevient alors bien périodique.
 
 
 \chapter{Barre Centrale Respirante}
@@ -279,7 +289,7 @@ Cette fois-ci, le mouvement n'apparaît plus du tout périodique. La transition 
       \caption[Transition du mouvement vers le chaos en fontion de \(\omega ^2 \): g=0]{Diagramme de bifurcation montrant la transition du mouvement vers le chaos.\\ \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=2 \; \dot{y}_0=0.2 \; \frac{l_0}{L}=0.4 \; g=0 \; \text{Nombre de Rebonds}=500\) Pas de bifurcation exponentiel.}
 \end{figure}
 
-Il est possible de faire apparaître le même type de transition vers le chaos pour des valeurs de \(\omega^2\) et \(\dot{x}_0\) beaucoup plus élevées.\footnote{Par analogie avec \ref{sec:choixCondInit}: si \(\dot{x}_0>>\omega ^2\), alors les caractéristiques du mouvement tendent vers celles d'un mouvement avec barre centrale au repos.}
+Il est possible de faire apparaître le même type de transition vers le chaos pour des valeurs de \(\omega^2\) et \(\dot{x}_0\) beaucoup plus élevées.\footnote{Par analogie avec \ref{sec:choixCondInit}: si \(\dot{x}_0\gg\omega ^2\), alors les caractéristiques du mouvement tendent vers celles d'un mouvement avec barre centrale au repos.}
 \begin{figure}[H]
    \includegraphics[width=\textwidth]{bifXTrans1.png}
       \caption[Transition du mouvement vers le chaos pour une vitesse de départ en x plus élevée]{Diagramme de bifurcation montrant la transition du mouvement vers le chaos en fonction du paramètre \( \omega ^2 \).\\ \(x_0=0.1 \; y_0=0.6 \; \dot{x}_0=20 \; \dot{y}_0=0.2 \; \frac{l_0}{L}=0.4 \; g=0 \; \text{Nombre de Rebonds}=500\) Pas de bifurcation exponentiel. On remarque que la transition se passe à une valeur de \(\omega ^2\) approximativement 10.000 fois plus élevée que précédemment pour une valeur de \(\dot{x}_0\) seulement 10 fois plus élevée. }
@@ -343,11 +353,11 @@ Une section de Poincaré pour une région prédite chaotique par le diagramme de
 \end{figure}
 
 \subsection{Chaos en y}
-En utilisant la conclusions de la section \ref{sec:chaosXY}, il est au moins possible de prédire que le mouvement en y est chaotique si le mouvement en x est chaotique. D'autre part, puisque le mouvement en x n'apparaît comme périodique que lorsque \(\omega ^2 << \dot{x}_0 \) et peut être négligé devant \( \dot{x} \), la question de savoir si le mouvement en y est alors périodique se ramène en fait à la problématique de la section \ref{sec:billVert} puisqu'on s'intéresse en somme à un billard avec barre centrale considérée au repos.
+En utilisant la conclusions de la section \ref{sec:chaosXY}, il est au moins possible de prédire que le mouvement en y est chaotique si le mouvement en x est chaotique. D'autre part, puisque le mouvement en x n'apparaît comme périodique que lorsque \(\omega ^2 \ll \dot{x}_0 \) et peut être négligé devant \( \dot{x} \), la question de savoir si le mouvement en y est alors périodique se ramène en fait à la problématique de la section \ref{sec:billVert} puisqu'on s'intéresse en somme à un billard avec barre centrale considérée au repos.
 
 
 \chapter{Conclusion}
-Il a donc été possible, grâce à une bonne vision théorique du problème posé, d'identifier deux éléments presque indépendants pouvant amener à un mouvement chaotique. De plus, cette modélisation nous a permis de prévoir grossièrement l'évolution du système en fonction de ses différents paramètres et d'identifier des conditions initiales et/ou des paramètres dégénérés pour lesquels le mouvement tend vers des caractéristiques bien particulières: \(y_{max}=\frac{\dot{y}_0^2}{2} + gh_0 \leq 0\), \(y_{max}=\frac{\dot{y}_0^2}{2} + gh_0 >> \frac{L}{2}\), \(\omega ^2 << \dot{x}_0 \), etc
+Il a donc été possible, grâce à une bonne vision théorique du problème posé, d'identifier deux éléments presque indépendants pouvant amener à un mouvement chaotique. De plus, cette modélisation nous a permis de prévoir grossièrement l'évolution du système en fonction de ses différents paramètres et d'identifier des conditions initiales et/ou des paramètres dégénérés pour lesquels le mouvement tend vers des caractéristiques bien particulières: \(y_{max}=y_0+\frac{\dot{y}_0^2}{2g} \leq 0\), \(y_{max}=y_0+\frac{\dot{y}_0^2}{2g} \gg \frac{L}{2}\), \(\omega ^2 \ll \dot{x}_0 \), etc
 
 De manière générale, il est aisé de voir que la barre centrale est toujours responsable de l'apparition du chaos. Dans le cas où elle est au repos, le mouvement en x est, quelles que soient les conditions initiales, toujours pérodique.Celui en y par contre est moins régulier lorsque la gravité est à prendre en compte. En effet, pour certaines conditions initiales, un mouvement chaotique en y peut apparaître. 
 
@@ -355,6 +365,11 @@ Lorsqu'on passe dans le cas de la barre respirante, le sytème transitionne trè
 
 Dans les sous-sections ``Chaos en y'' du dernier chapitre, on peut vraiment voir à quel point toutes les conclusions faites précédemment permettent de rapidement déduire le comportement général du mouvement, et comment on peut facilement se ramener à des cas plus simples déjà étudiés dans les chapitres précédents.
 
-\listoffigures
-\addcontentsline{toc}{chapter}{\listfigurename}
+%\listoffigures
+
+%\addcontentsline{toc}{chapter}{\listfigurename}
+
+%\printindex
+
+%\addcontentsline{toc}{chapter}{Index}
 \end{document}

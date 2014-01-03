@@ -1,21 +1,42 @@
+##Octave
 octave-core
+
+##Octave - Ugly files
+genGraph*
+isPeriode.m
+
+##OdePkg for octave
 ode*
 bvp4c.m
+
+##Dolphin
 .directory
+
+##Rapport - Images (contenues dans le pdf anyway)
 *.png
+
+##Rapport - pdfLatex output
 *.dvi
 *.aux
 *.lof
-*.backup
+*.toc
 *.bib
 *.log
-Rapport Fostella.pdf
-Conseils.pdf
-*.toc
 *.nav
 *.out
 *.snm
-genGraph*
-isPeriode.m
-*.swp
+*.ind
+*.idx
+*.ilg
+
+##Mint - Backup
+*.backup
+
+##Stuff
+Rapport Fostella.pdf
+Conseils.pdf
 CHI*
+
+##Vim
+*.swp
+
