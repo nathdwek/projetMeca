@@ -14,6 +14,7 @@ bvp4c.m
 
 ##Rapport - Images (contenues dans le pdf anyway)
 *.png
+*.jpg
 
 ##Rapport - pdfLatex output
 *.dvi
