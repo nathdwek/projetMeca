@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[draft]{beamer}
 \usetheme{default}
 \usecolortheme{whale}
 
@@ -38,8 +38,8 @@
     \pause \item Etude du mouvement d'une balle dans un billard carré muni d'une barre centrale respirante en fonction des paramètres du système:
     \begin{itemize}
       \pause \item Orientation du billard: vertical ou horizontal 
-      \pause \item Paramètres de respiration de la barre: \(l={\color{red}l_0}(1+sin({\color{red}\omega} t))\)
-      \pause \item Conditions initiales de la balle: position et vitesse initiales
+      \item Paramètres de respiration de la barre: \(l={\color{red}l_0}(1+sin({\color{red}\omega} t))\)
+      \item Conditions initiales de la balle: position et vitesse initiales
     \end{itemize}
   \end{itemize}
   \end{frame}
@@ -129,16 +129,32 @@
         \item Vérifié par les simulations
         \item Période peut être très longue \(\Rightarrow\) indicateur de la transition vers le chaos
         \item Mais une telle période ne semble pas toujours exister
+        \item Explication: "période irrationnelle"
       \end{itemize}
     \end{itemize}
-    \item \(l=L\): mouvement périodique mais
-    \item Cas dégénéré \(y_{max} \gg \frac{+L}{2}\)également vérifié par les simulations
+    \item \(l=L\): mouvement périodique dans un demi billard \(\Rightarrow\) période différente 
+    \item Cas dégénéré \(y_{max} \gg \frac{+L}{2}\) et \( y_{max}<0 \) également vérifiés par les simulations
   \end{itemize}
   \end{frame}
 
   \section{Barre Centrale Respirante}
   
   \begin{frame}
+  \framesubtitle{Observations}
+  \begin{itemize}
+  \item Mouvement en x transitionne très rapidement vers le chaos
+  \begin{itemize}
+  	\item Paramètre représentatif: \(\frac{l_0 \omega ^ 2}{\dot{x}_0}\)
+  	\item Transition pour \(\frac{l_0 \omega ^ 2}{\dot{x}_0} \simeq 10^{-7} \)
+  \end{itemize}
+  \item Mouvement en y
+  \begin{itemize}
+  	\item Théorie: Mouvement en x chaotique \( \Rightarrow \) Mouvement en y chaotique
+  	\item Observation: mouvement en x périodique \( \Leftrightarrow l_0 \omega ^ 2 \ll \dot{x}_0 \)\\ \( \Rightarrow \text{Se ramène au cas } g=0, \omega =0\) \\ \( \Rightarrow \text{Mouvement en y périodique} \)
+  	\item Mais toujours 2 états échantillonnables (quel que soit le mouvement en x)
+  	\item 2 états peuvent s'enchaîner 
+  \end{itemize}
+  \end{itemize}
   \end{frame}
   
   \section{Conclusion}
