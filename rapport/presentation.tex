@@ -1,4 +1,4 @@
-\documentclass[draft]{beamer}
+\documentclass{beamer}
 \usetheme{default}
 \usecolortheme{whale}
 
@@ -18,7 +18,7 @@
 \author[J. Chi, N. Dwek]{Jun Nuo Chi, Nathan Dwek}
 \institute{Ecole Polytechnique de Bruxelles}
 \date{8 janvier 2014}
-\logo{\includegraphics[height=1.2cm]{./EPB.jpg}}
+\logo{\includegraphics[height=0.8cm]{./EPB.jpg}}
 
 \begin{document}
 
@@ -139,27 +139,41 @@
 
   \section{Barre Centrale Respirante}
   
-  \begin{frame}
-  \framesubtitle{Observations}
+  \begin{frame}{Barre Centrale Respirante}
+  \framesubtitle{Billard Horizontal}
   \begin{itemize}
-  \item Mouvement en x transitionne très rapidement vers le chaos
-  \begin{itemize}
-  	\item Paramètre représentatif: \(\frac{l_0 \omega ^ 2}{\dot{x}_0}\)
-  	\item Transition pour \(\frac{l_0 \omega ^ 2}{\dot{x}_0} \simeq 10^{-7} \)
+    \item Mouvement en x transitionne très rapidement vers le chaos
+    \begin{itemize}
+      \item Paramètre représentatif: \(\frac{l_0 \omega ^ 2}{\dot{x}_0}\)
+      \item Transition pour \(\frac{l_0 \omega ^ 2}{\dot{x}_0} \simeq 10^{-7} \)
+    \end{itemize}
+    \item Mouvement en y:
+    \begin{itemize}
+      \item Théorie: Mouvement en x chaotique \( \Rightarrow \) Mouvement en y chaotique
+      \item Observation: mouvement en x périodique \( \Leftrightarrow l_0 \omega ^ 2 \ll \dot{x}_0 \)\\ \( \Rightarrow \text{Se ramène au cas } g=0, \omega =0\) \\ \( \Rightarrow \text{Mouvement en y périodique} \)
+      \item Mais toujours 2 états échantillonnables (quel que soit le mouvement en x)\\\(\Rightarrow\) Pas apparent sur un diagramme de bifurcation ou section de poincaré
+      \item 2 états peuvent s'enchaîner de manière chaotique\\\(\Rightarrow\) Vérification expérimentable possible par la coordonnée y en fonction du temps.
+    \end{itemize}
   \end{itemize}
-  \item Mouvement en y
+  \end{frame}
+  
+    \begin{frame}{Barre Centrale Respirante}
+  \framesubtitle{Billard Vertical}
   \begin{itemize}
-  	\item Théorie: Mouvement en x chaotique \( \Rightarrow \) Mouvement en y chaotique
-  	\item Observation: mouvement en x périodique \( \Leftrightarrow l_0 \omega ^ 2 \ll \dot{x}_0 \)\\ \( \Rightarrow \text{Se ramène au cas } g=0, \omega =0\) \\ \( \Rightarrow \text{Mouvement en y périodique} \)
-  	\item Mais toujours 2 états échantillonnables (quel que soit le mouvement en x)
-  	\item 2 états peuvent s'enchaîner 
-  \end{itemize}
+    \item Transition similaire du mouvement en x vers le chaos
+    \item Mouvement en y
+    \begin{itemize}
+      \item Théorie: Mouvement en x chaotique \( \Rightarrow \) Mouvement en y chaotique
+      \item Observation: mouvement en x périodique \( \Leftrightarrow l_0 \omega ^ 2 \ll \dot{x}_0 \)\\ \( \Rightarrow \text{Se ramène au cas } g=9.81, \omega =0\)\\
+      \( \Rightarrow\) Conclusions de ce cas à réutiliser.
+    \end{itemize}
   \end{itemize}
   \end{frame}
   
   \section{Conclusion}
   
-  \begin{frame}
+  \begin{frame}{Conclusion}
+  
   \end{frame}
   
 \end{document}
