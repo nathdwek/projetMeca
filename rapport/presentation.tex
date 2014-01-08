@@ -18,7 +18,7 @@
 \author[J. Chi, N. Dwek]{Jun Nuo Chi, Nathan Dwek}
 \institute{Ecole Polytechnique de Bruxelles}
 \date{8 janvier 2014}
-\logo{\includegraphics[height=0.8cm]{./EPB.jpg}}
+\logo{\includegraphics[height=1cm]{./EPB.jpg}}
 
 \begin{document}
 
@@ -49,7 +49,7 @@
   \begin{frame}{Modélisation}
   \framesubtitle{Modélisation du Mouvement et des Rebonds - Résolution Numérique}
   \begin{itemize}
-    \item Mouvement composé d'une suite de déplacement continus:\\
+    \item Mouvement composé d'une suite de déplacements continus:\\
     \pause \begin{center}
       \(\begin{cases}
         {\textstyle \ddot{x}=0}\\
@@ -68,7 +68,7 @@
         \item \(\lvert x \rvert \leq l_0(1+sin(\omega t)) \text{ et } y=0\)
         \item Transfert de quantité de mouvement avec \({\scriptstyle m_{barre}>>m_{balle}}\):
         \[\begin{cases}
-          \dot{x}^+=C\dot{x}^- +  (\text{sgn}(x))(1+C)cos(\omega t)\omega\\
+          \dot{x}^+=\dot{x}^- +  (\text{sgn}(x))(1+C)cos(\omega t)\omega\\
           \dot{y}^+=-C \dot{y}^-
         \end{cases}\]
       \end{itemize}
@@ -82,7 +82,7 @@
     \item Pas de transfert de quantité de mouvement en x \(\rightleftharpoons\) y ou système \(\rightleftharpoons\) y
      \begin{itemize}
        \item Si \(g=0\): Conservation de \(\lvert \dot{y} \rvert\)
-       \item Si \(g\neq0\): Conservation de \(y_{max}=\frac{\dot{y}^2}{2}+gy\)
+       \item Si \(g\neq0\): Conservation de \(y_{max}=y+\frac{\dot{y}^2}{2g}\)
        \begin{itemize}
          \item Zone \(y>y_{max}\) inaccessible
          \pause \item Cas dégénéré \(y_{max} \leq 0\): pas d'interaction avec la barre
@@ -168,12 +168,13 @@
   \framesubtitle{Billard Vertical}
   \begin{itemize}
     \item Transition similaire du mouvement en x vers le chaos
-    \item Mouvement en y
+    \pause \item Mouvement en y:
     \begin{itemize}
       \item Théorie: Mouvement en x chaotique \( \Rightarrow \) Mouvement en y chaotique
-      \item Observation: mouvement en x périodique \( \Leftrightarrow l_0 \omega ^ 2 \ll \dot{x}_0 \)\\ \( \Rightarrow \text{Se ramène au cas } g=9.81, \omega =0\)\\
+      \item Observation: mouvement en x périodique \( \Leftrightarrow l_0 \omega ^ 2 \ll \dot{x}_0 \)\\ \( \Rightarrow \text{Se ramène au cas } g=9.81, \omega =0\) (Si \(y_{max}>0\))\\
       \( \Rightarrow\) Conclusions de ce cas à réutiliser.
     \end{itemize}
+    \pause \item Cas dégénéré \(y_{max}<0\) vérifié par expérience (Mouvement périodique en x et en y)
   \end{itemize}
   \end{frame}
   
